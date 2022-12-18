@@ -3,7 +3,7 @@
 !.gitignore
 !*test.log
 !*.sv
-!*.mem
+!*new\*.mem
 !*.xpr
 !*.xdc
 !*.wcfg

@@ -102,6 +102,91 @@ module TAP_controller(
         endcase
     end
     
+        always_comb begin
+        case(state)
+            RESET: begin 
+                rst_o <= 1;
+                TAPmode_o <= 1;
+                reg_select_o <= 1;
+            end
+            IDLE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 1;
+                reg_select_o <= 1;
+            end
+            DR_SCAN: begin 
+                rst_o <= 0;
+                TAPmode_o <= 1;
+                reg_select_o <= 0;
+            end
+            IR_SCAN: begin 
+                rst_o <= 0;
+                TAPmode_o <= 1;
+                reg_select_o <= 0;
+            end
+            IR_CAPTURE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            IR_SHIFT: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            IR_EXIT1: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            IR_PAUSE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            IR_EXIT2: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            IR_UPDATE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 1;
+            end
+            DR_CAPTURE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+            DR_SHIFT: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+            DR_EXIT1: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+            DR_PAUSE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+            DR_EXIT2: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+            DR_UPDATE: begin 
+                rst_o <= 0;
+                TAPmode_o <= 0;
+                reg_select_o <= 0;
+            end
+        endcase
+    end
+    
     always @ (negedge tck_i) begin
         case(state)
             RESET: begin
@@ -112,11 +197,7 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 1;
-                
-                rst_o <= 1;
+
                 enable_o <= 0;
             end
             IDLE: begin
@@ -127,11 +208,7 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 1;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
             DR_SCAN:    begin
@@ -142,11 +219,7 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 1;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
             IR_SCAN:    begin
@@ -157,11 +230,7 @@ module TAP_controller(
                 shiftIR_o <= ~tms_i;
                 captureIR_o <= ~tms_i;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 1;
-                
-                rst_o <= tms_i;
+
                 enable_o <= 0;
             end
             IR_CAPTURE: begin
@@ -172,11 +241,7 @@ module TAP_controller(
                 shiftIR_o <= ~tms_i;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= ~tms_i;
             end
             IR_SHIFT:   begin
@@ -187,11 +252,7 @@ module TAP_controller(
                 shiftIR_o <= ~tms_i;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= ~tms_i;
             end
             IR_EXIT1:   begin
@@ -201,12 +262,8 @@ module TAP_controller(
                 
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
-                updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+                updIR_o <= tms_i;
+
                 enable_o <= 0;
             end
             IR_PAUSE:   begin
@@ -217,11 +274,7 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
             IR_EXIT2:   begin
@@ -231,12 +284,8 @@ module TAP_controller(
                 
                 shiftIR_o <= ~tms_i;
                 captureIR_o <= 0;
-                updIR_o <= 0;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+                updIR_o <= tms_i;
+
                 enable_o <= ~tms_i;
             end
             IR_UPDATE:  begin
@@ -246,12 +295,8 @@ module TAP_controller(
                 
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
-                updIR_o <= 1;
-                
-                reg_select_o <= 1;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+                updIR_o <= 0;
+
                 enable_o <= 0;
             end
             DR_CAPTURE: begin
@@ -262,11 +307,7 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= ~tms_i;
             end
             DR_SHIFT:   begin
@@ -277,26 +318,18 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= ~tms_i;
             end
             DR_EXIT1:   begin
                 shiftDR_o <= 0;
                 captureDR_o <= 0;
-                updDR_o <= 0;
+                updDR_o <= tms_i;
                 
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
             DR_PAUSE:   begin
@@ -307,41 +340,29 @@ module TAP_controller(
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
             DR_EXIT2:   begin
                 shiftDR_o <= ~tms_i;
+                captureDR_o <= 0;
+                updDR_o <= tms_i;
+                
+                shiftIR_o <= 0;
+                captureIR_o <= 0;
+                updIR_o <= 0;
+
+                enable_o <= ~tms_i;
+            end
+            DR_UPDATE:  begin
+                shiftDR_o <= 0;
                 captureDR_o <= 0;
                 updDR_o <= 0;
                 
                 shiftIR_o <= 0;
                 captureIR_o <= 0;
                 updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
-                enable_o <= ~tms_i;
-            end
-            DR_UPDATE:  begin
-                shiftDR_o <= 0;
-                captureDR_o <= 0;
-                updDR_o <= 1;
-                
-                shiftIR_o <= 0;
-                captureIR_o <= 0;
-                updIR_o <= 0;
-                
-                reg_select_o <= 0;
-                TAPmode_o <= 0;
-                
-                rst_o <= 0;
+
                 enable_o <= 0;
             end
         endcase
