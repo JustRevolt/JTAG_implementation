@@ -39,7 +39,7 @@ module tap_control_tb(
 
     //TAP_CONTROL_TEST
     logic [6:0] control_test_data_cntr;
-    logic [0:13] control_test_data [0:64];
+    logic [0:14] control_test_data [0:64];
     logic [13:0] control_test_cntr;
     logic [13:0] fsm_test_true_cntr;
     logic [13:0] out_control_test_true_cntr;
@@ -68,9 +68,9 @@ module tap_control_tb(
         
         #(`HALF_PERIOD*2);
         
-        $fwrite(fd, "          FSM TEST         ||                                   OUTPUT TEST                            ||\n");
-        $fwrite(fd, "---------------------------||--------------------------------------------------------------------------||\n");
-        $fwrite(fd, " TEST| TIME |TMS|STATE|true||shiftDR|captureDR|updDR|shiftIR|captureIR|updIR|TAPmode|Select|Enable|true||\n");
+        $fwrite(fd, "          FSM TEST         ||                                    OUTPUT TEST                               ||\n");
+        $fwrite(fd, "---------------------------||------------------------------------------------------------------------------||\n");
+        $fwrite(fd, " TEST| TIME |TMS|STATE|true||shiftDR|captureDR|updDR|shiftIR|captureIR|updIR|TAPmode|Select|Enable|RST|true||\n");
 	   
         while(control_test_data[control_test_data_cntr][0] !== 1'bx) begin
             tap_tms = control_test_data[control_test_data_cntr][0];
@@ -84,7 +84,7 @@ module tap_control_tb(
             $fwrite(fd, "%d| %t | %d |  %h  | %d  ||", control_test_cntr, $realtime, tap_tms, tap.tap_control.state, (tap.tap_control.state == real_state));
             if(tap.tap_control.state == real_state) fsm_test_true_cntr += 1;
             
-            $fwrite(fd, "   %d   |    %d    |  %d  |   %d   |    %d    |  %d  |   %d   |  %d   |  %d   | %b  ||\n", 
+            $fwrite(fd, "   %d   |    %d    |  %d  |   %d   |    %d    |  %d  |   %d   |  %d   |  %d   | %d | %b  ||\n",  
             tap.shiftDR,
             tap.captureDR,
             tap.updDR,
@@ -94,6 +94,7 @@ module tap_control_tb(
             tap.TAPmode,
             tap.reg_select,
             tap.enable,
+            tap.rst,
            (tap.shiftDR == control_test_data[control_test_data_cntr][5] &
             tap.captureDR == control_test_data[control_test_data_cntr][6] &
             tap.updDR == control_test_data[control_test_data_cntr][7] &
@@ -102,7 +103,8 @@ module tap_control_tb(
             tap.updIR == control_test_data[control_test_data_cntr][10] &
             tap.TAPmode == control_test_data[control_test_data_cntr][11] &
             tap.reg_select == control_test_data[control_test_data_cntr][12] &
-            tap.enable == control_test_data[control_test_data_cntr][13]));
+            tap.enable == control_test_data[control_test_data_cntr][13] &
+            tap.rst == control_test_data[control_test_data_cntr][14]));
             
             if( tap.shiftDR == control_test_data[control_test_data_cntr][5] &
                 tap.captureDR == control_test_data[control_test_data_cntr][6] &
@@ -112,7 +114,8 @@ module tap_control_tb(
                 tap.updIR == control_test_data[control_test_data_cntr][10] &
                 tap.TAPmode == control_test_data[control_test_data_cntr][11] &
                 tap.reg_select == control_test_data[control_test_data_cntr][12] &
-                tap.enable == control_test_data[control_test_data_cntr][13]) 
+                tap.enable == control_test_data[control_test_data_cntr][13] &
+                tap.rst == control_test_data[control_test_data_cntr][14]) 
                     out_control_test_true_cntr += 1;
 
             control_test_data_cntr += 1;
