@@ -18,14 +18,14 @@ module TAP
     
     logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, sample_preload_mode;
 
-    logic shiftDR, captureDR, updDR, outDR, TAPmode, normal_mode;
+    logic shiftDR, captureDR, updDR, outDR, normal_mode;
     logic shiftIR, captureIR, updIR, outIR;
 
     logic [INSRUCT_LENGTH-1:0] instruction;
 
     logic reg_select, out_mux_o, out_reg, tck, enable, rst;
     
-    assign normal_mode = sample_preload_mode | TAPmode;
+    assign normal_mode = sample_preload_mode | rst;
 
     test_data_regs #(.IN_BSC_COUNT(IN_BSC_COUNT), 
                         .OUT_BSC_COUNT(OUT_BSC_COUNT)) DR 
@@ -90,7 +90,6 @@ module TAP
         .captureIR_o(captureIR),
         .updIR_o(updIR),
         
-        .TAPmode_o(TAPmode),
         .reg_select_o(reg_select),
         .tck_o(tck),
         .rst_o(rst),
