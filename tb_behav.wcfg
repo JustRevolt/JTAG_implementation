@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1689994650fs"></ZoomStartTime>
+      <ZoomEndTime time="1690004181fs"></ZoomEndTime>
+      <Cursor1Time time="1690000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wvobject fp_name="group53" type="group">
+      <obj_property name="label">tb_results</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb/tap_control_tb_res" type="logic">
+         <obj_property name="ElementShortName">tap_control_tb_res</obj_property>
+         <obj_property name="ObjectShortName">tap_control_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/instruct_reg_tb_res" type="logic">
+         <obj_property name="ElementShortName">instruct_reg_tb_res</obj_property>
+         <obj_property name="ObjectShortName">instruct_reg_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/inst_decode_tb_res" type="logic">
+         <obj_property name="ElementShortName">inst_decode_tb_res</obj_property>
+         <obj_property name="ObjectShortName">inst_decode_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id_tb_res" type="logic">
+         <obj_property name="ElementShortName">device_id_tb_res</obj_property>
+         <obj_property name="ObjectShortName">device_id_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bypass_tb_res" type="logic">
+         <obj_property name="ElementShortName">bypass_tb_res</obj_property>
+         <obj_property name="ObjectShortName">bypass_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc_tb_res" type="logic">
+         <obj_property name="ElementShortName">bsc_tb_res</obj_property>
+         <obj_property name="ObjectShortName">bsc_tb_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/tap_control_tb_end" type="logic">
+         <obj_property name="ElementShortName">tap_control_tb_end</obj_property>
+         <obj_property name="ObjectShortName">tap_control_tb_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/instruct_reg_tb_end" type="logic">
+         <obj_property name="ElementShortName">instruct_reg_tb_end</obj_property>
+         <obj_property name="ObjectShortName">instruct_reg_tb_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/inst_decode_tb_end" type="logic">
+         <obj_property name="ElementShortName">inst_decode_tb_end</obj_property>
+         <obj_property name="ObjectShortName">inst_decode_tb_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id_tb_end" type="logic">
+         <obj_property name="ElementShortName">device_id_tb_end</obj_property>
+         <obj_property name="ObjectShortName">device_id_tb_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bypass_tb_end" type="logic">
+         <obj_property name="ElementShortName">bypass_tb_end</obj_property>
+         <obj_property name="ObjectShortName">bypass_tb_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc_tb_end" type="logic">
+         <obj_property name="ElementShortName">bsc_tb_end</obj_property>
+         <obj_property name="ObjectShortName">bsc_tb_end</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group54" type="group">
+      <obj_property name="label">bsc_tb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb/bsc/BSC/tck_i" type="logic">
+         <obj_property name="ElementShortName">tck_i</obj_property>
+         <obj_property name="ObjectShortName">tck_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/shift_i" type="logic">
+         <obj_property name="ElementShortName">shift_i</obj_property>
+         <obj_property name="ObjectShortName">shift_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/capture_i" type="logic">
+         <obj_property name="ElementShortName">capture_i</obj_property>
+         <obj_property name="ObjectShortName">capture_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/update_i" type="logic">
+         <obj_property name="ElementShortName">update_i</obj_property>
+         <obj_property name="ObjectShortName">update_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/test_mode_i" type="logic">
+         <obj_property name="ElementShortName">test_mode_i</obj_property>
+         <obj_property name="ObjectShortName">test_mode_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/normal_mode_i" type="logic">
+         <obj_property name="ElementShortName">normal_mode_i</obj_property>
+         <obj_property name="ObjectShortName">normal_mode_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/sys_data_i" type="logic">
+         <obj_property name="ElementShortName">sys_data_i</obj_property>
+         <obj_property name="ObjectShortName">sys_data_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/test_data_i" type="logic">
+         <obj_property name="ElementShortName">test_data_i</obj_property>
+         <obj_property name="ObjectShortName">test_data_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/test_data_o" type="logic">
+         <obj_property name="ElementShortName">test_data_o</obj_property>
+         <obj_property name="ObjectShortName">test_data_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/sys_data_o" type="logic">
+         <obj_property name="ElementShortName">sys_data_o</obj_property>
+         <obj_property name="ObjectShortName">sys_data_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/shift_reg" type="logic">
+         <obj_property name="ElementShortName">shift_reg</obj_property>
+         <obj_property name="ObjectShortName">shift_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/save_reg" type="logic">
+         <obj_property name="ElementShortName">save_reg</obj_property>
+         <obj_property name="ObjectShortName">save_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/shift_mux_o" type="logic">
+         <obj_property name="ElementShortName">shift_mux_o</obj_property>
+         <obj_property name="ObjectShortName">shift_mux_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/bsc/BSC/test_mux_o" type="logic">
+         <obj_property name="ElementShortName">test_mux_o</obj_property>
+         <obj_property name="ObjectShortName">test_mux_o</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
