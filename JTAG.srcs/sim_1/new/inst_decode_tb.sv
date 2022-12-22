@@ -69,9 +69,9 @@ module inst_decode_tb(
         
         #(`HALF_PERIOD*2);
         
-        $fwrite(fd, "                   DECODER TEST                     ||\n");
-        $fwrite(fd, "----------------------------------------------------||\n");
-        $fwrite(fd, " TEST| TIME |TMS|STATE| INST|inT|exT|S/P|BP|DId|true||\n");
+        $fwrite(fd, "                     DECODER TEST                       ||\n");
+        $fwrite(fd, "--------------------------------------------------------||\n");
+        $fwrite(fd, " TEST| TIME |TMS|STATE| INST|inT|exT|SysMode|BP|DId|true||\n");
 	   
         while(test_data[test_cntr][0] !== 1'bx) begin
             tap_tms = test_data[test_cntr][0];
@@ -79,18 +79,18 @@ module inst_decode_tb(
             
             #(3);
             
-            $fdisplay(fd, "%d| %t | %d |  %h  | %b | %b | %b | %b | %b | %b | %b ||", 
+            $fdisplay(fd, "%d| %t | %d |  %h  | %b | %b | %b |   %b   | %b| %b | %b  ||", 
                    test_cntr, $realtime, tap_tms, 
                    tap.tap_control.state, tap.inst_decoder.instruction_i,
                    tap.inst_decoder.inTest_o, tap.inst_decoder.exTest_o,
-                   tap.inst_decoder.sample_preload_o, tap.inst_decoder.bypass_o,
+                   tap.inst_decoder.system_mode_o, tap.inst_decoder.bypass_o,
                    tap.inst_decoder.device_id_o,
                   (tap.IR.instruction_o === tap.inst_decoder.instruction_i &
                    tap.tap_control.state === test_data[test_cntr][1:4] &
                    tap.inst_decoder.instruction_i === test_data[test_cntr][6:8] &
                    tap.inst_decoder.inTest_o === test_data[test_cntr][9] &
                    tap.inst_decoder.exTest_o === test_data[test_cntr][10] &
-                   tap.inst_decoder.sample_preload_o === test_data[test_cntr][11] &
+                   tap.inst_decoder.system_mode_o === test_data[test_cntr][11] &
                    tap.inst_decoder.bypass_o === test_data[test_cntr][12] &
                    tap.inst_decoder.device_id_o === test_data[test_cntr][13]
                    & tap.IR.shift_reg === test_data[test_cntr][14:16]));
@@ -100,7 +100,7 @@ module inst_decode_tb(
                    tap.inst_decoder.instruction_i === test_data[test_cntr][6:8] &
                    tap.inst_decoder.inTest_o === test_data[test_cntr][9] &
                    tap.inst_decoder.exTest_o === test_data[test_cntr][10] &
-                   tap.inst_decoder.sample_preload_o === test_data[test_cntr][11] &
+                   tap.inst_decoder.system_mode_o === test_data[test_cntr][11] &
                    tap.inst_decoder.bypass_o === test_data[test_cntr][12] &
                    tap.inst_decoder.device_id_o === test_data[test_cntr][13]
                    & tap.IR.shift_reg === test_data[test_cntr][14:16]) 
