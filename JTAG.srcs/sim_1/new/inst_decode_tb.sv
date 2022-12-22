@@ -3,7 +3,8 @@
 `define HALF_PERIOD 10
 
 module inst_decode_tb(
-    output result
+    output logic result
+    ,output logic tb_end
     ); 
     
     integer fd;
@@ -54,6 +55,7 @@ module inst_decode_tb(
         fd = $fopen("tap_instr_decode_test.log", "w");
         clk = 0;
         
+        tb_end = 0;
         ////decode REG TEST
         test_data_cntr = 0;       
         test_cntr = 0;
@@ -113,9 +115,13 @@ module inst_decode_tb(
         $fdisplay(fd, "%d ERRORS\t\t||", 
                     test_cntr-test_true_cntr-1);
 
+        if(test_cntr-test_true_cntr-1 == 0) result = 1;
+        else result = 0;
+        
         #10
         $fclose(fd);
-        $stop;
+        tb_end = 1;
+        //$stop;
 		end
 
 endmodule

@@ -3,7 +3,8 @@
 `define HALF_PERIOD 10
 
 module instruct_reg_tb(
-    output result
+    output logic result
+    ,output logic tb_end
     ); 
     
     integer fd;
@@ -41,8 +42,8 @@ module instruct_reg_tb(
     //INSTRUCTION REG TEST
     logic [6:0] instruct_test_data_cntr;
     logic [0:12] instruct_test_data [0:64];
-    logic [13:0] instruct_test_cntr;
-    logic [13:0] instruct_test_true_cntr;
+    logic [13:0] test_cntr;
+    logic [13:0] test_true_cntr;
     
 	always
 		#(`HALF_PERIOD) clk = ~clk;
@@ -53,16 +54,17 @@ module instruct_reg_tb(
         fd = $fopen("tap_instr_reg_test.log", "w");
         clk = 0;
         
+        tb_end = 0;
         ////INSTRUCTION REG TEST
         instruct_test_data_cntr = 0;       
-        instruct_test_cntr = 0;
-        instruct_test_true_cntr = 0;
+        test_cntr = 0;
+        test_true_cntr = 0;
         
         #(`HALF_PERIOD*2);
         
-        tap_tms = instruct_test_data[instruct_test_cntr][0];
-        tap_tdi = instruct_test_data[instruct_test_cntr][5];
-        instruct_test_cntr +=1;
+        tap_tms = instruct_test_data[test_cntr][0];
+        tap_tdi = instruct_test_data[test_cntr][5];
+        test_cntr +=1;
         
         #(`HALF_PERIOD*2);
         
@@ -70,41 +72,44 @@ module instruct_reg_tb(
         $fwrite(fd, "----------------------------------------------||\n");
         $fwrite(fd, " TEST| TIME |TMS|STATE|TDI|SHIFT|SAVE|OUT|true||\n");
 	   
-        while(instruct_test_data[instruct_test_cntr][0] !== 1'bx) begin
-            tap_tms = instruct_test_data[instruct_test_cntr][0];
-            tap_tdi = instruct_test_data[instruct_test_cntr][5];
+        while(instruct_test_data[test_cntr][0] !== 1'bx) begin
+            tap_tms = instruct_test_data[test_cntr][0];
+            tap_tdi = instruct_test_data[test_cntr][5];
             
             #(3);
             
             $fdisplay(fd, "%d| %t | %d |  %h  | %d |  %d  |  %d | %d |  %b ||", 
-                   instruct_test_cntr, $realtime, tap_tms, 
+                   test_cntr, $realtime, tap_tms, 
                    tap.tap_control.state, tap.IR.data_i,
                    tap.IR.shift_reg, tap.IR.save_reg, tap.IR.data_o,
                   (tap.IR.data_i === tap_tdi &
-                   tap.tap_control.state === instruct_test_data[instruct_test_cntr][1:4] &
-                   tap.IR.shift_reg === instruct_test_data[instruct_test_cntr][6:8] &
-                   tap.IR.save_reg === instruct_test_data[instruct_test_cntr][9:11] &
-                   tap.IR.data_o === instruct_test_data[instruct_test_cntr][12]));
+                   tap.tap_control.state === instruct_test_data[test_cntr][1:4] &
+                   tap.IR.shift_reg === instruct_test_data[test_cntr][6:8] &
+                   tap.IR.save_reg === instruct_test_data[test_cntr][9:11] &
+                   tap.IR.data_o === instruct_test_data[test_cntr][12]));
                    
             if(tap.IR.data_i === tap_tdi &
-               tap.IR.shift_reg === instruct_test_data[instruct_test_cntr][6:8] &
-               tap.IR.save_reg === instruct_test_data[instruct_test_cntr][9:11] &
-               tap.IR.data_o === instruct_test_data[instruct_test_cntr][12]) 
-                   instruct_test_true_cntr += 1;
+               tap.IR.shift_reg === instruct_test_data[test_cntr][6:8] &
+               tap.IR.save_reg === instruct_test_data[test_cntr][9:11] &
+               tap.IR.data_o === instruct_test_data[test_cntr][12]) 
+                   test_true_cntr += 1;
             
             instruct_test_data_cntr += 1;
-            instruct_test_cntr += 1;
+            test_cntr += 1;
             #(`HALF_PERIOD*2-3);
         end
         $fdisplay(fd, "%d COMPLETE, \t||", 
-                    instruct_test_true_cntr);
+                    test_true_cntr);
         $fdisplay(fd, "%d ERRORS\t\t||", 
-                    instruct_test_cntr-instruct_test_true_cntr-1);
-
+                    test_cntr-test_true_cntr-1);
+        
+        if(test_cntr-test_true_cntr-1 == 0) result = 1;
+        else result = 0;
         
         #10
         $fclose(fd);
-        $stop;
+        tb_end = 1;
+        //$stop;
 		end
 
 endmodule

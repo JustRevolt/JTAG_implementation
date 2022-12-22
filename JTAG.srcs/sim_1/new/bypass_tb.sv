@@ -3,7 +3,8 @@
 `define HALF_PERIOD 10
 
 module bypass_tb(
-    output result
+    output logic result
+    ,output logic tb_end
     ); 
     
     integer fd;
@@ -53,6 +54,7 @@ module bypass_tb(
         fd = $fopen("tap_bypass_test.log", "w");
         clk = 0;
         
+        tb_end = 0;
         ////decode REG TEST    
         test_cntr = 0;
         test_true_cntr = 0;
@@ -103,10 +105,14 @@ module bypass_tb(
                     test_true_cntr);
         $fdisplay(fd, "%d ERRORS\t\t||", 
                     test_cntr-test_true_cntr-1);
-
+        
+        if(test_cntr-test_true_cntr-1 == 0) result = 1;
+        else result = 0;
+        
         #10
         $fclose(fd);
-        $stop;
+        tb_end = 1;
+        //$stop;
 		end
 
 endmodule
