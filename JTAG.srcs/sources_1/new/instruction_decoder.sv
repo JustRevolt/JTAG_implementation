@@ -4,7 +4,7 @@ module instruction_decoder #(parameter INSTR_LENGTH = 4) (
     input logic [INSTR_LENGTH-1:0] instruction_i,
     output logic inTest_o,
     output logic exTest_o,
-    output logic sample_preload_o,
+    output logic system_mode_o,
     output logic bypass_o,
     output logic device_id_o
     );           
@@ -17,42 +17,42 @@ module instruction_decoder #(parameter INSTR_LENGTH = 4) (
         SAMP_PRE: begin
             inTest_o        = 0;
             exTest_o        = 0;
-            sample_preload_o= 1;
+            system_mode_o   = 1;
             bypass_o        = 0;
             device_id_o     = 0;
         end
         INTEST: begin
             inTest_o        = 1;
             exTest_o        = 0;
-            sample_preload_o= 0;
+            system_mode_o   = 0;
             bypass_o        = 0;
             device_id_o     = 0;
         end 
         EXTEST: begin
             inTest_o        = 0;
             exTest_o        = 1;
-            sample_preload_o= 0;
+            system_mode_o   = 0;
             bypass_o        = 0;
             device_id_o     = 0;
         end
         DEVICE_ID: begin
             inTest_o        = 0;
             exTest_o        = 0;
-            sample_preload_o= 0;
+            system_mode_o   = 1;
             bypass_o        = 0;
             device_id_o     = 1;
         end
         BYPASS: begin
             inTest_o        = 0;
             exTest_o        = 0;
-            sample_preload_o= 0;
+            system_mode_o   = 1;
             bypass_o        = 1;
             device_id_o     = 0;
         end
         default: begin
             inTest_o        = 0;
             exTest_o        = 0;
-            sample_preload_o= 0;
+            system_mode_o   = 1;
             bypass_o        = 1;
             device_id_o     = 0;
         end

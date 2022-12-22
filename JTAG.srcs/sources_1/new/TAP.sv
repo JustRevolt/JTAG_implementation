@@ -16,7 +16,7 @@ module TAP
     
     localparam INSRUCT_LENGTH = 3;
     
-    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, sample_preload_mode;
+    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, system_mode;
 
     logic shiftDR, captureDR, updDR, outDR, normal_mode;
     logic shiftIR, captureIR, updIR, outIR;
@@ -25,7 +25,7 @@ module TAP
 
     logic reg_select, out_mux_o, out_reg, tck, enable, rst;
     
-    assign normal_mode = sample_preload_mode | rst;
+    assign normal_mode = system_mode | rst;
 
     test_data_regs #(.IN_BSC_COUNT(IN_BSC_COUNT), 
                         .OUT_BSC_COUNT(OUT_BSC_COUNT)) DR 
@@ -36,7 +36,7 @@ module TAP
         .upd_i(updDR),
         .inTest_i(inTest_mode),
         .exTest_i(exTest_mode),
-        .modeNormalTest_i(normal_mode),
+        .normal_mode_i(normal_mode),
         .mux_g0_i(bypass_mode),
         .mux_g1_i(device_id_mode),
         .data_i(TDI_i),
@@ -73,7 +73,7 @@ module TAP
         .instruction_i(instruction),
         .inTest_o(inTest_mode),
         .exTest_o(exTest_mode),
-        .sample_preload_o(sample_preload_mode),
+        .system_mode_o(system_mode),
         .bypass_o(bypass_mode),
         .device_id_o(device_id_mode)
     );

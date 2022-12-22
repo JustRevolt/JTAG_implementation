@@ -10,7 +10,7 @@ module test_data_regs
         input logic upd_i,
         input logic inTest_i,
         input logic exTest_i,
-        input logic modeNormalTest_i,
+        input logic normal_mode_i,
         input logic mux_g0_i,
         input logic mux_g1_i,
         input logic data_i,
@@ -25,6 +25,9 @@ module test_data_regs
     logic device_id_out;
     logic in_bsc_test_data_o [IN_BSC_COUNT-1:0];
     logic out_bsc_test_data_o [OUT_BSC_COUNT-1:0];
+    logic bsc_update;
+    
+    assign bsc_update = upd_i & (~normal_mode_i);
 
     mux_3to1 out_mux(
         .in0(out_bsc_test_data_o[0]), 
@@ -62,9 +65,9 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(upd_i),
+                    .update_i(bsc_update),
                     .test_mode_i(inTest_i),
-                    .normal_mode_i(modeNormalTest_i),
+                    .normal_mode_i(normal_mode_i),
                     .sys_data_i(in_BSC_i[bsc_c]),
                     .test_data_i(data_i),
                     .test_data_o(in_bsc_test_data_o[bsc_c]),
@@ -75,9 +78,9 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(upd_i),
+                    .update_i(bsc_update),
                     .test_mode_i(inTest_i),
-                    .normal_mode_i(modeNormalTest_i),
+                    .normal_mode_i(normal_mode_i),
                     .sys_data_i(in_BSC_i[bsc_c]),
                     .test_data_i(in_bsc_test_data_o[bsc_c+1]),
                     .test_data_o(in_bsc_test_data_o[bsc_c]),
@@ -91,9 +94,9 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(upd_i),
+                    .update_i(bsc_update),
                     .test_mode_i(exTest_i),
-                    .normal_mode_i(modeNormalTest_i),
+                    .normal_mode_i(normal_mode_i),
                     .sys_data_i(out_BSC_i[bsc_c]),
                     .test_data_i(in_bsc_test_data_o[0]),
                     .test_data_o(out_bsc_test_data_o[bsc_c]),
@@ -106,7 +109,7 @@ module test_data_regs
                     .capture_i(capture_i),
                     .update_i(upd_i),
                     .test_mode_i(exTest_i),
-                    .normal_mode_i(modeNormalTest_i),
+                    .normal_mode_i(normal_mode_i),
                     .sys_data_i(out_BSC_i[bsc_c]),
                     .test_data_i(out_bsc_test_data_o[bsc_c+1]),
                     .test_data_o(out_bsc_test_data_o[bsc_c]),
