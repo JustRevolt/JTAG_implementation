@@ -13,13 +13,13 @@ module BSC(
     output logic sys_data_o
     );
     
-    logic shift_reg, save_reg = 1'b0;
+    logic shift_reg = 1'b0, save_reg = 1'b0;
     logic shift_mux_o;
     logic test_mux_o;
     
     mux_2to1 shift_mux(
-        .in0(sys_data_i),
-        .in1(test_data_i),
+        .in0(test_data_i),
+        .in1(sys_data_i),
         .g(capture_i),
         .out(shift_mux_o)
     );
