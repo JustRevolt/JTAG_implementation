@@ -97,7 +97,8 @@ module TAP
     );
 
     assign TDO_o = enable ? out_reg : 1'bZ;
-    
+//    assign TDO_o = out_reg;
+      
 //TODO Check the slack
     always @ (negedge tck) begin
         out_reg <= out_mux_o;

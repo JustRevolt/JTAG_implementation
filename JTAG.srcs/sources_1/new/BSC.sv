@@ -25,7 +25,7 @@ module BSC(
     );
     
     mux_2to1 test_mux(
-        .in0(0),
+        .in0(1'b0),
         .in1(save_reg),
         .g(test_mode_i),
         .out(test_mux_o)

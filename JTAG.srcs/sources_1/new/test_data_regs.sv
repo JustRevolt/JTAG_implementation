@@ -46,7 +46,7 @@ module test_data_regs
     );
     
     device_id_reg #(.REG_LENGTH(32), 
-                    .IDCODE(32'h362F093)) 
+                    .IDCODE(32'hdeadbeaf)) 
     device_id (
         .tck_i(tck_i),
         .data_i(data_i),
