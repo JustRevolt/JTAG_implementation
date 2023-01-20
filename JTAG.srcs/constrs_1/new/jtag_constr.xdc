@@ -45,3 +45,4 @@ set_property IOSTANDARD LVCMOS33 [get_ports test_reg_i]
 
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets anlz_tap_tck_o_OBUF]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tap_tck_i_IBUF]
+

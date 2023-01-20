@@ -95,7 +95,7 @@ module TAP
         .rst_o(rst),
         .enable_o(enable)
     );
-
+//      assign TDO_o = 0;  
     assign TDO_o = enable ? out_reg : 1'bZ;
 //    assign TDO_o = out_reg;
       

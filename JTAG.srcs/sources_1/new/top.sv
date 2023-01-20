@@ -13,14 +13,14 @@ module top(
     input logic [2:0] data_pass_i,  // sw_2:0 = M13 L16 J15
     input logic test_reg_i         // btn_l = P17
      
-//    ,output logic anlz_dec_clk_o,    // JC_1         = K1
-//    output logic anlz_dec_rst_o,    // JC_2         = F6
-//    output logic [2:0] anlz_dec_data_o, // JC_9:7   = G13, F13, E16
+//    ,output logic anlz_dec_clk_o    // JC_1         = K1
+//    ,output logic anlz_dec_rst_o    // JC_2         = F6
+//    ,output logic [2:0] anlz_dec_data_o // JC_9:7   = G13, F13, E16
     
-//    output logic anlz_tap_tck_o,    // JD_1 = H4
-//    output logic anlz_tap_tms_o,    // JD_2 = H1
-//    output logic anlz_tap_tdi_o,    // JD_3 = G1
-//    output logic anlz_tap_tdo_o     // JD_4 = G3
+//    ,output logic anlz_tap_tck_o    // JD_1 = H4
+//    ,output logic anlz_tap_tms_o    // JD_2 = H1
+//    ,output logic anlz_tap_tdi_o    // JD_3 = G1
+//    ,output logic anlz_tap_tdo_o     // JD_4 = G3
     );
     
     localparam IN_BSC_COUNT = 3;

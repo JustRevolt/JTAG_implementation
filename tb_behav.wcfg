@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="98844749fs"></ZoomStartTime>
-      <ZoomEndTime time="825776256fs"></ZoomEndTime>
-      <Cursor1Time time="220000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1690000001fs"></ZoomEndTime>
+      <Cursor1Time time="840000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+      <ValueColumnWidth column_width="134"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
+   <WVObjectSize size="5" />
    <wvobject fp_name="group53" type="group">
       <obj_property name="label">tb_results</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -135,10 +135,10 @@
    <wvobject fp_name="group29" type="group">
       <obj_property name="label">bypass_test</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="group62" type="group">
          <obj_property name="label">TAP</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/tb/bypass/tap/TCK_i" type="logic">
             <obj_property name="ElementShortName">TCK_i</obj_property>
             <obj_property name="ObjectShortName">TCK_i</obj_property>
@@ -359,6 +359,460 @@
             <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
             <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
          </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group341" type="group">
+      <obj_property name="label">top_tb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="group374" type="group">
+         <obj_property name="label">TAP</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/TCK_i" type="logic">
+            <obj_property name="ElementShortName">TCK_i</obj_property>
+            <obj_property name="ObjectShortName">TCK_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/TMS_i" type="logic">
+            <obj_property name="ElementShortName">TMS_i</obj_property>
+            <obj_property name="ObjectShortName">TMS_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/TDI_i" type="logic">
+            <obj_property name="ElementShortName">TDI_i</obj_property>
+            <obj_property name="ObjectShortName">TDI_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/in_BSC_i" type="array">
+            <obj_property name="ElementShortName">in_BSC_i[2:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_i[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/out_BSC_i" type="array">
+            <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
+            <obj_property name="ObjectShortName">out_BSC_i[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/TDO_o" type="logic">
+            <obj_property name="ElementShortName">TDO_o</obj_property>
+            <obj_property name="ObjectShortName">TDO_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/in_BSC_o" type="array">
+            <obj_property name="ElementShortName">in_BSC_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/out_BSC_o" type="array">
+            <obj_property name="ElementShortName">out_BSC_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">out_BSC_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inTest_mode" type="logic">
+            <obj_property name="ElementShortName">inTest_mode</obj_property>
+            <obj_property name="ObjectShortName">inTest_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/exTest_mode" type="logic">
+            <obj_property name="ElementShortName">exTest_mode</obj_property>
+            <obj_property name="ObjectShortName">exTest_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/bypass_mode" type="logic">
+            <obj_property name="ElementShortName">bypass_mode</obj_property>
+            <obj_property name="ObjectShortName">bypass_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/device_id_mode" type="logic">
+            <obj_property name="ElementShortName">device_id_mode</obj_property>
+            <obj_property name="ObjectShortName">device_id_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/system_mode" type="logic">
+            <obj_property name="ElementShortName">system_mode</obj_property>
+            <obj_property name="ObjectShortName">system_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/shiftDR" type="logic">
+            <obj_property name="ElementShortName">shiftDR</obj_property>
+            <obj_property name="ObjectShortName">shiftDR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/captureDR" type="logic">
+            <obj_property name="ElementShortName">captureDR</obj_property>
+            <obj_property name="ObjectShortName">captureDR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/updDR" type="logic">
+            <obj_property name="ElementShortName">updDR</obj_property>
+            <obj_property name="ObjectShortName">updDR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/outDR" type="logic">
+            <obj_property name="ElementShortName">outDR</obj_property>
+            <obj_property name="ObjectShortName">outDR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/normal_mode" type="logic">
+            <obj_property name="ElementShortName">normal_mode</obj_property>
+            <obj_property name="ObjectShortName">normal_mode</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/shiftIR" type="logic">
+            <obj_property name="ElementShortName">shiftIR</obj_property>
+            <obj_property name="ObjectShortName">shiftIR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/captureIR" type="logic">
+            <obj_property name="ElementShortName">captureIR</obj_property>
+            <obj_property name="ObjectShortName">captureIR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/updIR" type="logic">
+            <obj_property name="ElementShortName">updIR</obj_property>
+            <obj_property name="ObjectShortName">updIR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/outIR" type="logic">
+            <obj_property name="ElementShortName">outIR</obj_property>
+            <obj_property name="ObjectShortName">outIR</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/instruction" type="array">
+            <obj_property name="ElementShortName">instruction[2:0]</obj_property>
+            <obj_property name="ObjectShortName">instruction[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/reg_select" type="logic">
+            <obj_property name="ElementShortName">reg_select</obj_property>
+            <obj_property name="ObjectShortName">reg_select</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/out_mux_o" type="logic">
+            <obj_property name="ElementShortName">out_mux_o</obj_property>
+            <obj_property name="ObjectShortName">out_mux_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/out_reg" type="logic">
+            <obj_property name="ElementShortName">out_reg</obj_property>
+            <obj_property name="ObjectShortName">out_reg</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/tck" type="logic">
+            <obj_property name="ElementShortName">tck</obj_property>
+            <obj_property name="ObjectShortName">tck</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/enable" type="logic">
+            <obj_property name="ElementShortName">enable</obj_property>
+            <obj_property name="ObjectShortName">enable</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/rst" type="logic">
+            <obj_property name="ElementShortName">rst</obj_property>
+            <obj_property name="ObjectShortName">rst</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IN_BSC_COUNT" type="array">
+            <obj_property name="ElementShortName">IN_BSC_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">IN_BSC_COUNT[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/OUT_BSC_COUNT" type="array">
+            <obj_property name="ElementShortName">OUT_BSC_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">OUT_BSC_COUNT[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/INSRUCT_LENGTH" type="array">
+            <obj_property name="ElementShortName">INSRUCT_LENGTH[31:0]</obj_property>
+            <obj_property name="ObjectShortName">INSRUCT_LENGTH[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group397" type="group">
+         <obj_property name="label">DR</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/tck_i" type="logic">
+            <obj_property name="ElementShortName">tck_i</obj_property>
+            <obj_property name="ObjectShortName">tck_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/shift_i" type="logic">
+            <obj_property name="ElementShortName">shift_i</obj_property>
+            <obj_property name="ObjectShortName">shift_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/capture_i" type="logic">
+            <obj_property name="ElementShortName">capture_i</obj_property>
+            <obj_property name="ObjectShortName">capture_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/upd_i" type="logic">
+            <obj_property name="ElementShortName">upd_i</obj_property>
+            <obj_property name="ObjectShortName">upd_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/inTest_i" type="logic">
+            <obj_property name="ElementShortName">inTest_i</obj_property>
+            <obj_property name="ObjectShortName">inTest_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/exTest_i" type="logic">
+            <obj_property name="ElementShortName">exTest_i</obj_property>
+            <obj_property name="ObjectShortName">exTest_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/normal_mode_i" type="logic">
+            <obj_property name="ElementShortName">normal_mode_i</obj_property>
+            <obj_property name="ObjectShortName">normal_mode_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/mux_g0_i" type="logic">
+            <obj_property name="ElementShortName">mux_g0_i</obj_property>
+            <obj_property name="ObjectShortName">mux_g0_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/mux_g1_i" type="logic">
+            <obj_property name="ElementShortName">mux_g1_i</obj_property>
+            <obj_property name="ObjectShortName">mux_g1_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/data_i" type="logic">
+            <obj_property name="ElementShortName">data_i</obj_property>
+            <obj_property name="ObjectShortName">data_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/in_BSC_i" type="array">
+            <obj_property name="ElementShortName">in_BSC_i[2:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_i[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/out_BSC_i" type="array">
+            <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
+            <obj_property name="ObjectShortName">out_BSC_i[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/data_o" type="logic">
+            <obj_property name="ElementShortName">data_o</obj_property>
+            <obj_property name="ObjectShortName">data_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/in_BSC_o" type="array">
+            <obj_property name="ElementShortName">in_BSC_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/out_BSC_o" type="array">
+            <obj_property name="ElementShortName">out_BSC_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">out_BSC_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass_out" type="logic">
+            <obj_property name="ElementShortName">bypass_out</obj_property>
+            <obj_property name="ObjectShortName">bypass_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id_out" type="logic">
+            <obj_property name="ElementShortName">device_id_out</obj_property>
+            <obj_property name="ObjectShortName">device_id_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/in_bsc_test_data_o" type="array">
+            <obj_property name="ElementShortName">in_bsc_test_data_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">in_bsc_test_data_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/out_bsc_test_data_o" type="array">
+            <obj_property name="ElementShortName">out_bsc_test_data_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">out_bsc_test_data_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bsc_update" type="logic">
+            <obj_property name="ElementShortName">bsc_update</obj_property>
+            <obj_property name="ObjectShortName">bsc_update</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/IN_BSC_COUNT" type="array">
+            <obj_property name="ElementShortName">IN_BSC_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">IN_BSC_COUNT[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/OUT_BSC_COUNT" type="array">
+            <obj_property name="ElementShortName">OUT_BSC_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">OUT_BSC_COUNT[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group404" type="group">
+         <obj_property name="label">bypass</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/tck_i" type="logic">
+            <obj_property name="ElementShortName">tck_i</obj_property>
+            <obj_property name="ObjectShortName">tck_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/shift_i" type="logic">
+            <obj_property name="ElementShortName">shift_i</obj_property>
+            <obj_property name="ObjectShortName">shift_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/data_i" type="logic">
+            <obj_property name="ElementShortName">data_i</obj_property>
+            <obj_property name="ObjectShortName">data_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/data_o" type="logic">
+            <obj_property name="ElementShortName">data_o</obj_property>
+            <obj_property name="ObjectShortName">data_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/shift_reg" type="array">
+            <obj_property name="ElementShortName">shift_reg[0:0]</obj_property>
+            <obj_property name="ObjectShortName">shift_reg[0:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/REG_LENGTH" type="array">
+            <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
+            <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group405" type="group">
+         <obj_property name="label">IR</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/rst_i" type="logic">
+            <obj_property name="ElementShortName">rst_i</obj_property>
+            <obj_property name="ObjectShortName">rst_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/tck_i" type="logic">
+            <obj_property name="ElementShortName">tck_i</obj_property>
+            <obj_property name="ObjectShortName">tck_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/shift_i" type="logic">
+            <obj_property name="ElementShortName">shift_i</obj_property>
+            <obj_property name="ObjectShortName">shift_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/capture_i" type="logic">
+            <obj_property name="ElementShortName">capture_i</obj_property>
+            <obj_property name="ObjectShortName">capture_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/upd_i" type="logic">
+            <obj_property name="ElementShortName">upd_i</obj_property>
+            <obj_property name="ObjectShortName">upd_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/data_i" type="logic">
+            <obj_property name="ElementShortName">data_i</obj_property>
+            <obj_property name="ObjectShortName">data_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/data_o" type="logic">
+            <obj_property name="ElementShortName">data_o</obj_property>
+            <obj_property name="ObjectShortName">data_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/instruction_o" type="array">
+            <obj_property name="ElementShortName">instruction_o[2:0]</obj_property>
+            <obj_property name="ObjectShortName">instruction_o[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/design_spec_data" type="array">
+            <obj_property name="ElementShortName">design_spec_data[2:0]</obj_property>
+            <obj_property name="ObjectShortName">design_spec_data[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/shift_reg" type="array">
+            <obj_property name="ElementShortName">shift_reg[2:0]</obj_property>
+            <obj_property name="ObjectShortName">shift_reg[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/save_reg" type="array">
+            <obj_property name="ElementShortName">save_reg[2:0]</obj_property>
+            <obj_property name="ObjectShortName">save_reg[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/mux_out" type="array">
+            <obj_property name="ElementShortName">mux_out[2:0]</obj_property>
+            <obj_property name="ObjectShortName">mux_out[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/REG_LENGTH" type="array">
+            <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
+            <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/SPEC_DATA" type="array">
+            <obj_property name="ElementShortName">SPEC_DATA[2:0]</obj_property>
+            <obj_property name="ObjectShortName">SPEC_DATA[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/IR/DEFAULT_INSTRUCT" type="array">
+            <obj_property name="ElementShortName">DEFAULT_INSTRUCT[2:0]</obj_property>
+            <obj_property name="ObjectShortName">DEFAULT_INSTRUCT[2:0]</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group241" type="group">
+      <obj_property name="label">deviceID_tb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb/device_id/tap/TCK_i" type="logic">
+         <obj_property name="ElementShortName">TCK_i</obj_property>
+         <obj_property name="ObjectShortName">TCK_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/TMS_i" type="logic">
+         <obj_property name="ElementShortName">TMS_i</obj_property>
+         <obj_property name="ObjectShortName">TMS_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/TDI_i" type="logic">
+         <obj_property name="ElementShortName">TDI_i</obj_property>
+         <obj_property name="ObjectShortName">TDI_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/in_BSC_i" type="array">
+         <obj_property name="ElementShortName">in_BSC_i[1:0]</obj_property>
+         <obj_property name="ObjectShortName">in_BSC_i[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/out_BSC_i" type="array">
+         <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
+         <obj_property name="ObjectShortName">out_BSC_i[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/TDO_o" type="logic">
+         <obj_property name="ElementShortName">TDO_o</obj_property>
+         <obj_property name="ObjectShortName">TDO_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/in_BSC_o" type="array">
+         <obj_property name="ElementShortName">in_BSC_o[1:0]</obj_property>
+         <obj_property name="ObjectShortName">in_BSC_o[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/out_BSC_o" type="array">
+         <obj_property name="ElementShortName">out_BSC_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">out_BSC_o[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/inTest_mode" type="logic">
+         <obj_property name="ElementShortName">inTest_mode</obj_property>
+         <obj_property name="ObjectShortName">inTest_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/exTest_mode" type="logic">
+         <obj_property name="ElementShortName">exTest_mode</obj_property>
+         <obj_property name="ObjectShortName">exTest_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/bypass_mode" type="logic">
+         <obj_property name="ElementShortName">bypass_mode</obj_property>
+         <obj_property name="ObjectShortName">bypass_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/device_id_mode" type="logic">
+         <obj_property name="ElementShortName">device_id_mode</obj_property>
+         <obj_property name="ObjectShortName">device_id_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/system_mode" type="logic">
+         <obj_property name="ElementShortName">system_mode</obj_property>
+         <obj_property name="ObjectShortName">system_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/shiftDR" type="logic">
+         <obj_property name="ElementShortName">shiftDR</obj_property>
+         <obj_property name="ObjectShortName">shiftDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/captureDR" type="logic">
+         <obj_property name="ElementShortName">captureDR</obj_property>
+         <obj_property name="ObjectShortName">captureDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/updDR" type="logic">
+         <obj_property name="ElementShortName">updDR</obj_property>
+         <obj_property name="ObjectShortName">updDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/outDR" type="logic">
+         <obj_property name="ElementShortName">outDR</obj_property>
+         <obj_property name="ObjectShortName">outDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/normal_mode" type="logic">
+         <obj_property name="ElementShortName">normal_mode</obj_property>
+         <obj_property name="ObjectShortName">normal_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/shiftIR" type="logic">
+         <obj_property name="ElementShortName">shiftIR</obj_property>
+         <obj_property name="ObjectShortName">shiftIR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/captureIR" type="logic">
+         <obj_property name="ElementShortName">captureIR</obj_property>
+         <obj_property name="ObjectShortName">captureIR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/updIR" type="logic">
+         <obj_property name="ElementShortName">updIR</obj_property>
+         <obj_property name="ObjectShortName">updIR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/outIR" type="logic">
+         <obj_property name="ElementShortName">outIR</obj_property>
+         <obj_property name="ObjectShortName">outIR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/instruction" type="array">
+         <obj_property name="ElementShortName">instruction[2:0]</obj_property>
+         <obj_property name="ObjectShortName">instruction[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/reg_select" type="logic">
+         <obj_property name="ElementShortName">reg_select</obj_property>
+         <obj_property name="ObjectShortName">reg_select</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/out_mux_o" type="logic">
+         <obj_property name="ElementShortName">out_mux_o</obj_property>
+         <obj_property name="ObjectShortName">out_mux_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/out_reg" type="logic">
+         <obj_property name="ElementShortName">out_reg</obj_property>
+         <obj_property name="ObjectShortName">out_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/tck" type="logic">
+         <obj_property name="ElementShortName">tck</obj_property>
+         <obj_property name="ObjectShortName">tck</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/enable" type="logic">
+         <obj_property name="ElementShortName">enable</obj_property>
+         <obj_property name="ObjectShortName">enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/IN_BSC_COUNT" type="array">
+         <obj_property name="ElementShortName">IN_BSC_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">IN_BSC_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/OUT_BSC_COUNT" type="array">
+         <obj_property name="ElementShortName">OUT_BSC_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">OUT_BSC_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/device_id/tap/INSRUCT_LENGTH" type="array">
+         <obj_property name="ElementShortName">INSRUCT_LENGTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">INSRUCT_LENGTH[31:0]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>
