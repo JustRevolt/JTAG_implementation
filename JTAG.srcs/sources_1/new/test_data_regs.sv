@@ -29,14 +29,6 @@ module test_data_regs
     
     assign bsc_update = upd_i & (~normal_mode_i);
 
-    mux_3to1 out_mux(
-        .in0(out_bsc_test_data_o[0]), 
-        .in1(bypass_out), 
-        .in2(device_id_out),
-        .g({mux_g1_i, mux_g0_i}),
-        .out(data_o)
-    );
-
     bypass_reg #(.REG_LENGTH(1)) bypass
     (
         .tck_i(tck_i),
@@ -54,7 +46,7 @@ module test_data_regs
         .capture_i(capture_i),
         .data_o(device_id_out)   
     );
-
+    
     genvar bsc_c;
 
     generate
@@ -117,5 +109,11 @@ module test_data_regs
                 );
         end
     endgenerate
+    
+    always_comb begin
+        if(mux_g0_i) data_o = bypass_out;
+        else if(mux_g1_i) data_o = device_id_out;
+        else data_o = out_bsc_test_data_o[0];
+    end
     
 endmodule

@@ -14,40 +14,18 @@ module instruction_regs #(parameter REG_LENGTH = 4,
         output logic [REG_LENGTH - 1:0] instruction_o
     );
 
-    const logic [REG_LENGTH - 1:0] design_spec_data = SPEC_DATA; //32'h362F093
-    logic [REG_LENGTH - 1:0] shift_reg;
-    logic [REG_LENGTH - 1:0] save_reg;
-    logic mux_out [REG_LENGTH - 1:0];
-        
-    genvar i;
-    generate
-        for (i=0; i<REG_LENGTH; i++) begin
-            
-            if (i == REG_LENGTH - 1)
-                mux_2to1 shift_mux(
-                    .in0(data_i),
-                    .in1(design_spec_data[i]),
-                    .g(capture_i),
-                    .out(mux_out[i])
-                );
-            else
-                mux_2to1 shift_mux(
-                    .in0(shift_reg[i+1]),
-                    .in1(design_spec_data[i]),
-                    .g(capture_i),
-                    .out(mux_out[i])
-                );
-        end 
-    endgenerate
-    
+    const logic [REG_LENGTH - 1:0] design_spec_data = SPEC_DATA;
+    logic [REG_LENGTH - 1:0] shift_reg = 0;
+    logic [REG_LENGTH - 1:0] save_reg = DEFAULT_INSTRUCT;
+           
     assign data_o = shift_reg[0];
     
     assign instruction_o = save_reg;
     
     always @ (posedge tck_i) begin
         if(shift_i) begin
-            for(int n=0; n<REG_LENGTH; n++)
-                shift_reg[n] <= mux_out[n];
+            if (capture_i) shift_reg <= design_spec_data;
+            else shift_reg <= {data_i, shift_reg[REG_LENGTH - 1:1]};
         end
         if (upd_i) begin
             save_reg <= shift_reg;

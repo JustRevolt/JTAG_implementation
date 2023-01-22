@@ -14,34 +14,19 @@ module BSC(
     );
     
     logic shift_reg = 1'b0, save_reg = 1'b0;
-    logic shift_mux_o;
-    logic test_mux_o;
-    
-    mux_2to1 shift_mux(
-        .in0(test_data_i),
-        .in1(sys_data_i),
-        .g(capture_i),
-        .out(shift_mux_o)
-    );
-    
-    mux_2to1 test_mux(
-        .in0(1'b0),
-        .in1(save_reg),
-        .g(test_mode_i),
-        .out(test_mux_o)
-    );
-    
-    mux_2to1 out_mux(
-        .in0(test_mux_o),
-        .in1(sys_data_i),
-        .g(normal_mode_i),
-        .out(sys_data_o)
-    );
     
     assign test_data_o = shift_reg;
     
+    always_comb begin
+        if(normal_mode_i) sys_data_o <= sys_data_i;
+        else sys_data_o <= save_reg&test_mode_i;
+    end
+    
     always @ (posedge tck_i) begin
-        if(shift_i) shift_reg <= shift_mux_o;
+        if(shift_i) begin
+            if(capture_i) shift_reg <= sys_data_i;
+            else shift_reg <= test_data_i;
+        end 
         if (update_i) save_reg <= shift_reg;
     end     
     

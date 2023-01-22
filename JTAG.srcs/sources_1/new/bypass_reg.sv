@@ -13,9 +13,8 @@ module bypass_reg #(parameter REG_LENGTH = 1)
     assign data_o = shift_reg[0];
     
     always @(posedge tck_i) begin
-        if(shift_i) begin 
-            for(int i=0; i<REG_LENGTH-1; i++)
-                shift_reg[i] <= shift_reg[i+1];
+        if(shift_i) begin
+            shift_reg <= shift_reg >> 1;
             shift_reg[REG_LENGTH-1] <= data_i;
         end
     end

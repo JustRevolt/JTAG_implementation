@@ -12,51 +12,10 @@ module instruction_decoder #(parameter INSTR_LENGTH = 4) (
     typedef enum logic [2:0] {SAMP_PRE,INTEST,EXTEST,DEVICE_ID,
     BYPASS = 3'b111}instruct_code;
     
-    always_comb begin
-    case(instruction_i)
-        SAMP_PRE: begin
-            inTest_o        = 0;
-            exTest_o        = 0;
-            system_mode_o   = 1;
-            bypass_o        = 0;
-            device_id_o     = 0;
-        end
-        INTEST: begin
-            inTest_o        = 1;
-            exTest_o        = 0;
-            system_mode_o   = 0;
-            bypass_o        = 0;
-            device_id_o     = 0;
-        end 
-        EXTEST: begin
-            inTest_o        = 0;
-            exTest_o        = 1;
-            system_mode_o   = 0;
-            bypass_o        = 0;
-            device_id_o     = 0;
-        end
-        DEVICE_ID: begin
-            inTest_o        = 0;
-            exTest_o        = 0;
-            system_mode_o   = 1;
-            bypass_o        = 0;
-            device_id_o     = 1;
-        end
-        BYPASS: begin
-            inTest_o        = 0;
-            exTest_o        = 0;
-            system_mode_o   = 1;
-            bypass_o        = 1;
-            device_id_o     = 0;
-        end
-        default: begin
-            inTest_o        = 0;
-            exTest_o        = 0;
-            system_mode_o   = 1;
-            bypass_o        = 1;
-            device_id_o     = 0;
-        end
-    endcase
-    end
+    assign inTest_o        = (instruction_i == INTEST);
+    assign exTest_o        = (instruction_i == EXTEST);
+    assign system_mode_o   = ~((instruction_i == EXTEST) || (instruction_i == INTEST));
+    assign bypass_o        = (instruction_i[INSTR_LENGTH-1] == 1);
+    assign device_id_o     = (instruction_i == DEVICE_ID);
     
 endmodule
