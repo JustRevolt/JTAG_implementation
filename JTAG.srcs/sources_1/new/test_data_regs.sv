@@ -23,11 +23,6 @@ module test_data_regs
     
     logic bypass_out;
     logic device_id_out;
-    logic in_bsc_test_data_o [IN_BSC_COUNT-1:0];
-    logic out_bsc_test_data_o [OUT_BSC_COUNT-1:0];
-    logic bsc_update;
-    
-    assign bsc_update = upd_i & (~normal_mode_i);
 
     bypass_reg #(.REG_LENGTH(1)) bypass
     (
@@ -47,73 +42,65 @@ module test_data_regs
         .data_o(device_id_out)   
     );
     
-    genvar bsc_c;
-
-    generate
-        // generate in_BSC
-        for(bsc_c=0; bsc_c<IN_BSC_COUNT; bsc_c++) begin
-            if (bsc_c == IN_BSC_COUNT-1)
-                BSC in_BSC(
-                    .tck_i(tck_i),
-                    .shift_i(shift_i),
-                    .capture_i(capture_i),
-                    .update_i(bsc_update),
-                    .test_mode_i(inTest_i),
-                    .normal_mode_i(normal_mode_i),
-                    .sys_data_i(in_BSC_i[bsc_c]),
-                    .test_data_i(data_i),
-                    .test_data_o(in_bsc_test_data_o[bsc_c]),
-                    .sys_data_o(in_BSC_o[bsc_c])
-                );
-            else
-                BSC in_BSC(
-                    .tck_i(tck_i),
-                    .shift_i(shift_i),
-                    .capture_i(capture_i),
-                    .update_i(bsc_update),
-                    .test_mode_i(inTest_i),
-                    .normal_mode_i(normal_mode_i),
-                    .sys_data_i(in_BSC_i[bsc_c]),
-                    .test_data_i(in_bsc_test_data_o[bsc_c+1]),
-                    .test_data_o(in_bsc_test_data_o[bsc_c]),
-                    .sys_data_o(in_BSC_o[bsc_c])
-                );
+    //BSR
+    
+    logic in_bsc_shift [IN_BSC_COUNT-1:0];
+    logic in_bsc_save [IN_BSC_COUNT-1:0];
+    
+    logic out_bsc_shift [OUT_BSC_COUNT-1:0];
+    logic out_bsc_save [OUT_BSC_COUNT-1:0];
+    
+    logic bsr_update;
+    
+    initial begin
+        foreach(in_bsc_shift[i]) in_bsc_shift[i] = 0;
+        foreach(in_bsc_save[i]) in_bsc_save[i] = 0;
+        foreach(out_bsc_shift[i]) out_bsc_shift[i] = 0;
+        foreach(out_bsc_save[i]) out_bsc_save[i] = 0;
+    end
+    
+    assign bsr_update = upd_i & (~normal_mode_i);
+    
+    always @ (posedge tck_i) begin
+        if(shift_i) begin
+            if(capture_i) begin
+                in_bsc_shift <=  in_BSC_i;
+                out_bsc_shift <= out_BSC_i;
+            end
+            else begin
+                out_bsc_shift <= {in_bsc_shift[0], out_bsc_shift[OUT_BSC_COUNT-1:1]};
+                in_bsc_shift <= {data_i, in_bsc_shift[IN_BSC_COUNT-1:1]};
+            end
+        end 
+        if (bsr_update) begin
+            in_bsc_save  <= in_bsc_shift;  
+            out_bsc_save <= out_bsc_shift;
         end
-        // generate out_BSC
-        for(bsc_c=0; bsc_c<OUT_BSC_COUNT; bsc_c++) begin
-            if (bsc_c == OUT_BSC_COUNT-1)
-                BSC out_BSC(
-                    .tck_i(tck_i),
-                    .shift_i(shift_i),
-                    .capture_i(capture_i),
-                    .update_i(bsc_update),
-                    .test_mode_i(exTest_i),
-                    .normal_mode_i(normal_mode_i),
-                    .sys_data_i(out_BSC_i[bsc_c]),
-                    .test_data_i(in_bsc_test_data_o[0]),
-                    .test_data_o(out_bsc_test_data_o[bsc_c]),
-                    .sys_data_o(out_BSC_o[bsc_c])
-                );
-            else
-                BSC out_BSC(
-                    .tck_i(tck_i),
-                    .shift_i(shift_i),
-                    .capture_i(capture_i),
-                    .update_i(upd_i),
-                    .test_mode_i(exTest_i),
-                    .normal_mode_i(normal_mode_i),
-                    .sys_data_i(out_BSC_i[bsc_c]),
-                    .test_data_i(out_bsc_test_data_o[bsc_c+1]),
-                    .test_data_o(out_bsc_test_data_o[bsc_c]),
-                    .sys_data_o(out_BSC_o[bsc_c])
-                );
+    end  
+    
+    always_comb begin
+        if(normal_mode_i) begin
+            in_BSC_o  = in_BSC_i;
+            out_BSC_o = out_BSC_i;
         end
-    endgenerate
+        else begin
+            if(inTest_i) in_BSC_o  = in_bsc_save;
+            else begin
+                foreach(in_BSC_o[i]) in_BSC_o[i] = 0; 
+            end
+            
+            if(exTest_i) out_BSC_o  = out_bsc_save;
+            else begin
+                foreach(out_BSC_o[j]) out_BSC_o[j] = 0; 
+            end
+        end
+    end
+    
     
     always_comb begin
         if(mux_g0_i) data_o = bypass_out;
         else if(mux_g1_i) data_o = device_id_out;
-        else data_o = out_bsc_test_data_o[0];
+        else data_o = out_bsc_shift[0];
     end
     
 endmodule

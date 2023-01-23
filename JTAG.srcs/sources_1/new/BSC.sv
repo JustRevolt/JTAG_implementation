@@ -18,8 +18,8 @@ module BSC(
     assign test_data_o = shift_reg;
     
     always_comb begin
-        if(normal_mode_i) sys_data_o <= sys_data_i;
-        else sys_data_o <= save_reg&test_mode_i;
+        if(normal_mode_i) sys_data_o = sys_data_i;
+        else sys_data_o = save_reg&test_mode_i;
     end
     
     always @ (posedge tck_i) begin
