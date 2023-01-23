@@ -12,10 +12,8 @@ module TAP_controller(
     output logic captureIR_o,
     output logic updIR_o,
     
-    output logic reg_select_o, //0 - DR, 1 - IR  
-    output logic tck_o,
-    output logic rst_o,
-    output logic enable_o
+    output logic reg_select_o, //0 - DR, 1 - IR 
+    output logic rst_o
     );
     
     typedef enum logic [3:0] {RESET,IDLE,DR_SCAN,IR_SCAN,
@@ -23,8 +21,6 @@ module TAP_controller(
     DR_CAPTURE,DR_SHIFT,DR_EXIT1,DR_PAUSE,DR_EXIT2,DR_UPDATE}tap_state;
     
     tap_state state, next_state;
-    
-    assign tck_o = tck_i;
     
     always @ (posedge tck_i) begin
         state <= next_state;
@@ -100,11 +96,11 @@ module TAP_controller(
         endcase
     end
     
-    assign shiftDR_o = ((state == DR_CAPTURE) || (state == DR_SHIFT));
+    assign shiftDR_o = (state == DR_SHIFT);
     assign captureDR_o = (state == DR_CAPTURE);
     assign updDR_o = (state == DR_UPDATE);
     
-    assign shiftIR_o = ((state == IR_CAPTURE) || (state == IR_SHIFT));
+    assign shiftIR_o = (state == IR_SHIFT);
     assign captureIR_o = (state == IR_CAPTURE);
     assign updIR_o = (state == IR_UPDATE);
     
@@ -113,6 +109,5 @@ module TAP_controller(
                             || (state == IR_EXIT1)  || (state == IR_PAUSE)
                             || (state == IR_EXIT2)  || (state == IR_UPDATE));  
     assign rst_o = (state == RESET);
-    assign enable_o = ((state == DR_SHIFT) || (state == IR_SHIFT));
     
 endmodule

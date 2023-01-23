@@ -16,29 +16,28 @@ module TAP
     
     localparam INSRUCT_LENGTH = 3;
     
-    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, system_mode;
+    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, SamplePreload_mode;
 
-    logic shiftDR, captureDR, updDR, outDR, normal_mode;
+    logic shiftDR, captureDR, updDR, outDR;
     logic shiftIR, captureIR, updIR, outIR;
 
     logic [INSRUCT_LENGTH-1:0] instruction;
 
-    logic reg_select, out_reg, tck, enable, rst;
-    
-    assign normal_mode = system_mode | rst;
+    logic reg_select, out_reg, enable, rst;
 
     test_data_regs #(.IN_BSC_COUNT(IN_BSC_COUNT), 
                         .OUT_BSC_COUNT(OUT_BSC_COUNT)) DR 
     (
-        .tck_i(tck),
+        .rst_i(rst),
+        .tck_i(TCK_i),
         .shift_i(shiftDR),
         .capture_i(captureDR),
         .upd_i(updDR),
         .inTest_i(inTest_mode),
         .exTest_i(exTest_mode),
-        .normal_mode_i(normal_mode),
-        .mux_g0_i(bypass_mode),
-        .mux_g1_i(device_id_mode),
+        .SamplePreload_i(SamplePreload_mode),
+        .bypass_i(bypass_mode),
+        .device_id_i(device_id_mode),
         .data_i(TDI_i),
         .in_BSC_i(in_BSC_i),
         .out_BSC_i(out_BSC_i),
@@ -53,7 +52,7 @@ module TAP
         .DEFAULT_INSTRUCT(3'b011)) 
     IR (
         .rst_i(rst),
-        .tck_i(tck),
+        .tck_i(TCK_i),
         .shift_i(shiftIR),
         .capture_i(captureIR),
         .upd_i(updIR),
@@ -66,7 +65,7 @@ module TAP
         .instruction_i(instruction),
         .inTest_o(inTest_mode),
         .exTest_o(exTest_mode),
-        .system_mode_o(system_mode),
+        .SamplePreload_o(SamplePreload_mode),
         .bypass_o(bypass_mode),
         .device_id_o(device_id_mode)
     );
@@ -84,16 +83,11 @@ module TAP
         .updIR_o(updIR),
         
         .reg_select_o(reg_select),
-        .tck_o(tck),
-        .rst_o(rst),
-        .enable_o(enable)
+        .rst_o(rst)
     );
-//      assign TDO_o = 0;  
-//    assign TDO_o = enable ? out_reg : 1'bZ;
-//    assign TDO_o = out_reg;
       
 //TODO Check the slack
-    always @ (negedge tck) begin
+    always @ (negedge TCK_i) begin
         if(reg_select) TDO_o <= outIR;
         else TDO_o <= outDR;
     end

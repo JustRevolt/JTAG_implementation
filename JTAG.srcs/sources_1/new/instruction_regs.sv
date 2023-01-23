@@ -14,25 +14,19 @@ module instruction_regs #(parameter REG_LENGTH = 4,
         output logic [REG_LENGTH - 1:0] instruction_o
     );
 
-    const logic [REG_LENGTH - 1:0] design_spec_data = SPEC_DATA;
-    logic [REG_LENGTH - 1:0] shift_reg = 0;
-    logic [REG_LENGTH - 1:0] save_reg = DEFAULT_INSTRUCT;
+    logic [REG_LENGTH - 1:0] shift_reg;
            
     assign data_o = shift_reg[0];
     
-    assign instruction_o = save_reg;
+    always @ (posedge tck_i or posedge rst_i) begin
+        if (rst_i) shift_reg <= '0; 
+        else if (capture_i) shift_reg <= SPEC_DATA;
+        else if(shift_i) shift_reg <= {data_i, shift_reg[REG_LENGTH - 1:1]};
+    end
     
-    always @ (posedge tck_i) begin
-        if(shift_i) begin
-            if (capture_i) shift_reg <= design_spec_data;
-            else shift_reg <= {data_i, shift_reg[REG_LENGTH - 1:1]};
-        end
-        if (upd_i) begin
-            save_reg <= shift_reg;
-        end
-        if (rst_i) begin
-            save_reg <= DEFAULT_INSTRUCT;
-        end
+    always @ (posedge tck_i or posedge rst_i) begin
+        if (rst_i) instruction_o <= DEFAULT_INSTRUCT;
+        else if(upd_i) instruction_o <= shift_reg;
     end
 
 endmodule
