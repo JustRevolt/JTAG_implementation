@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1690000001fs"></ZoomEndTime>
-      <Cursor1Time time="840000000fs"></Cursor1Time>
+      <ZoomStartTime time="883470450fs"></ZoomStartTime>
+      <ZoomEndTime time="2979305910fs"></ZoomEndTime>
+      <Cursor1Time time="2630000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <NameColumnWidth column_width="265"></NameColumnWidth>
+      <ValueColumnWidth column_width="122"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="5" />
    <wvobject fp_name="group53" type="group">
@@ -123,14 +123,6 @@
          <obj_property name="ElementShortName">save_reg</obj_property>
          <obj_property name="ObjectShortName">save_reg</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb/bsc/BSC/shift_mux_o" type="logic">
-         <obj_property name="ElementShortName">shift_mux_o</obj_property>
-         <obj_property name="ObjectShortName">shift_mux_o</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb/bsc/BSC/test_mux_o" type="logic">
-         <obj_property name="ElementShortName">test_mux_o</obj_property>
-         <obj_property name="ObjectShortName">test_mux_o</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="group29" type="group">
       <obj_property name="label">bypass_test</obj_property>
@@ -235,10 +227,6 @@
             <obj_property name="ElementShortName">reg_select</obj_property>
             <obj_property name="ObjectShortName">reg_select</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb/bypass/tap/out_mux_o" type="logic">
-            <obj_property name="ElementShortName">out_mux_o</obj_property>
-            <obj_property name="ObjectShortName">out_mux_o</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/bypass/tap/out_reg" type="logic">
             <obj_property name="ElementShortName">out_reg</obj_property>
             <obj_property name="ObjectShortName">out_reg</obj_property>
@@ -315,10 +303,6 @@
             <obj_property name="ElementShortName">save_reg[2:0]</obj_property>
             <obj_property name="ObjectShortName">save_reg[2:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb/bypass/tap/IR/mux_out" type="array">
-            <obj_property name="ElementShortName">mux_out[2:0]</obj_property>
-            <obj_property name="ObjectShortName">mux_out[2:0]</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/bypass/tap/IR/REG_LENGTH" type="array">
             <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
             <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
@@ -364,6 +348,7 @@
    <wvobject fp_name="group341" type="group">
       <obj_property name="label">top_tb</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="group374" type="group">
          <obj_property name="label">TAP</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -380,8 +365,8 @@
             <obj_property name="ObjectShortName">TDI_i</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/in_BSC_i" type="array">
-            <obj_property name="ElementShortName">in_BSC_i[2:0]</obj_property>
-            <obj_property name="ObjectShortName">in_BSC_i[2:0]</obj_property>
+            <obj_property name="ElementShortName">in_BSC_i[1:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_i[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/out_BSC_i" type="array">
             <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
@@ -392,8 +377,8 @@
             <obj_property name="ObjectShortName">TDO_o</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/in_BSC_o" type="array">
-            <obj_property name="ElementShortName">in_BSC_o[2:0]</obj_property>
-            <obj_property name="ObjectShortName">in_BSC_o[2:0]</obj_property>
+            <obj_property name="ElementShortName">in_BSC_o[1:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_o[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/out_BSC_o" type="array">
             <obj_property name="ElementShortName">out_BSC_o[2:0]</obj_property>
@@ -463,10 +448,6 @@
             <obj_property name="ElementShortName">reg_select</obj_property>
             <obj_property name="ObjectShortName">reg_select</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/out_mux_o" type="logic">
-            <obj_property name="ElementShortName">out_mux_o</obj_property>
-            <obj_property name="ObjectShortName">out_mux_o</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/out_reg" type="logic">
             <obj_property name="ElementShortName">out_reg</obj_property>
             <obj_property name="ObjectShortName">out_reg</obj_property>
@@ -499,6 +480,7 @@
       <wvobject fp_name="group397" type="group">
          <obj_property name="label">DR</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/tb/top/project_top/tap/DR/tck_i" type="logic">
             <obj_property name="ElementShortName">tck_i</obj_property>
             <obj_property name="ObjectShortName">tck_i</obj_property>
@@ -540,8 +522,8 @@
             <obj_property name="ObjectShortName">data_i</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/in_BSC_i" type="array">
-            <obj_property name="ElementShortName">in_BSC_i[2:0]</obj_property>
-            <obj_property name="ObjectShortName">in_BSC_i[2:0]</obj_property>
+            <obj_property name="ElementShortName">in_BSC_i[1:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_i[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/out_BSC_i" type="array">
             <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
@@ -552,8 +534,8 @@
             <obj_property name="ObjectShortName">data_o</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/in_BSC_o" type="array">
-            <obj_property name="ElementShortName">in_BSC_o[2:0]</obj_property>
-            <obj_property name="ObjectShortName">in_BSC_o[2:0]</obj_property>
+            <obj_property name="ElementShortName">in_BSC_o[1:0]</obj_property>
+            <obj_property name="ObjectShortName">in_BSC_o[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/out_BSC_o" type="array">
             <obj_property name="ElementShortName">out_BSC_o[2:0]</obj_property>
@@ -568,8 +550,8 @@
             <obj_property name="ObjectShortName">device_id_out</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/in_bsc_test_data_o" type="array">
-            <obj_property name="ElementShortName">in_bsc_test_data_o[2:0]</obj_property>
-            <obj_property name="ObjectShortName">in_bsc_test_data_o[2:0]</obj_property>
+            <obj_property name="ElementShortName">in_bsc_test_data_o[1:0]</obj_property>
+            <obj_property name="ObjectShortName">in_bsc_test_data_o[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/out_bsc_test_data_o" type="array">
             <obj_property name="ElementShortName">out_bsc_test_data_o[2:0]</obj_property>
@@ -591,35 +573,10 @@
       <wvobject fp_name="group404" type="group">
          <obj_property name="label">bypass</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/tck_i" type="logic">
-            <obj_property name="ElementShortName">tck_i</obj_property>
-            <obj_property name="ObjectShortName">tck_i</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/shift_i" type="logic">
-            <obj_property name="ElementShortName">shift_i</obj_property>
-            <obj_property name="ObjectShortName">shift_i</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/data_i" type="logic">
-            <obj_property name="ElementShortName">data_i</obj_property>
-            <obj_property name="ObjectShortName">data_i</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/data_o" type="logic">
-            <obj_property name="ElementShortName">data_o</obj_property>
-            <obj_property name="ObjectShortName">data_o</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/shift_reg" type="array">
-            <obj_property name="ElementShortName">shift_reg[0:0]</obj_property>
-            <obj_property name="ObjectShortName">shift_reg[0:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bypass/REG_LENGTH" type="array">
-            <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
-            <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
-         </wvobject>
       </wvobject>
       <wvobject fp_name="group405" type="group">
          <obj_property name="label">IR</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/tb/top/project_top/tap/IR/rst_i" type="logic">
             <obj_property name="ElementShortName">rst_i</obj_property>
             <obj_property name="ObjectShortName">rst_i</obj_property>
@@ -664,10 +621,6 @@
             <obj_property name="ElementShortName">save_reg[2:0]</obj_property>
             <obj_property name="ObjectShortName">save_reg[2:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/IR/mux_out" type="array">
-            <obj_property name="ElementShortName">mux_out[2:0]</obj_property>
-            <obj_property name="ObjectShortName">mux_out[2:0]</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/IR/REG_LENGTH" type="array">
             <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
             <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
@@ -681,11 +634,82 @@
             <obj_property name="ObjectShortName">DEFAULT_INSTRUCT[2:0]</obj_property>
          </wvobject>
       </wvobject>
+      <wvobject fp_name="group266" type="group">
+         <obj_property name="label">decode</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/instruction_i" type="array">
+            <obj_property name="ElementShortName">instruction_i[2:0]</obj_property>
+            <obj_property name="ObjectShortName">instruction_i[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/inTest_o" type="logic">
+            <obj_property name="ElementShortName">inTest_o</obj_property>
+            <obj_property name="ObjectShortName">inTest_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/exTest_o" type="logic">
+            <obj_property name="ElementShortName">exTest_o</obj_property>
+            <obj_property name="ObjectShortName">exTest_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/system_mode_o" type="logic">
+            <obj_property name="ElementShortName">system_mode_o</obj_property>
+            <obj_property name="ObjectShortName">system_mode_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/bypass_o" type="logic">
+            <obj_property name="ElementShortName">bypass_o</obj_property>
+            <obj_property name="ObjectShortName">bypass_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/device_id_o" type="logic">
+            <obj_property name="ElementShortName">device_id_o</obj_property>
+            <obj_property name="ObjectShortName">device_id_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/inst_decoder/INSTR_LENGTH" type="array">
+            <obj_property name="ElementShortName">INSTR_LENGTH[31:0]</obj_property>
+            <obj_property name="ObjectShortName">INSTR_LENGTH[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group289" type="group">
+         <obj_property name="label">deviceID</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/tck_i" type="logic">
+            <obj_property name="ElementShortName">tck_i</obj_property>
+            <obj_property name="ObjectShortName">tck_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/data_i" type="logic">
+            <obj_property name="ElementShortName">data_i</obj_property>
+            <obj_property name="ObjectShortName">data_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/shift_i" type="logic">
+            <obj_property name="ElementShortName">shift_i</obj_property>
+            <obj_property name="ObjectShortName">shift_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/capture_i" type="logic">
+            <obj_property name="ElementShortName">capture_i</obj_property>
+            <obj_property name="ObjectShortName">capture_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/data_o" type="logic">
+            <obj_property name="ElementShortName">data_o</obj_property>
+            <obj_property name="ObjectShortName">data_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/device_id" type="array">
+            <obj_property name="ElementShortName">device_id[31:0]</obj_property>
+            <obj_property name="ObjectShortName">device_id[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/shift_reg" type="array">
+            <obj_property name="ElementShortName">shift_reg[31:0]</obj_property>
+            <obj_property name="ObjectShortName">shift_reg[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/REG_LENGTH" type="array">
+            <obj_property name="ElementShortName">REG_LENGTH[31:0]</obj_property>
+            <obj_property name="ObjectShortName">REG_LENGTH[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/top/project_top/tap/DR/device_id/IDCODE" type="array">
+            <obj_property name="ElementShortName">IDCODE[31:0]</obj_property>
+            <obj_property name="ObjectShortName">IDCODE[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="group241" type="group">
       <obj_property name="label">deviceID_tb</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb/device_id/tap/TCK_i" type="logic">
          <obj_property name="ElementShortName">TCK_i</obj_property>
          <obj_property name="ObjectShortName">TCK_i</obj_property>
@@ -781,10 +805,6 @@
       <wvobject fp_name="/tb/device_id/tap/reg_select" type="logic">
          <obj_property name="ElementShortName">reg_select</obj_property>
          <obj_property name="ObjectShortName">reg_select</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb/device_id/tap/out_mux_o" type="logic">
-         <obj_property name="ElementShortName">out_mux_o</obj_property>
-         <obj_property name="ObjectShortName">out_mux_o</obj_property>
       </wvobject>
       <wvobject fp_name="/tb/device_id/tap/out_reg" type="logic">
          <obj_property name="ElementShortName">out_reg</obj_property>
