@@ -141,7 +141,7 @@ module top_tb(
             $fdisplay(fd, "%d| %t |  %h  | %d | %b | %b |   %b   |   %b   |  %b  | %b  ||", 
                    test_cntr
                    ,$realtime 
-                   ,project_top.tap.tap_control.state
+                   ,project_top.tap.state
                    ,tap_tms
                    ,tap_tdi 
                    ,tap_tdo

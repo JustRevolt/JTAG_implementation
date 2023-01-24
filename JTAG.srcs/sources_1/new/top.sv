@@ -36,8 +36,8 @@ module top(
         .IN_BSC_COUNT(IN_BSC), 
         .OUT_BSC_COUNT(OUT_BSC))
     tap(
-        .TCK_i(tap_tck_i)
-      , .TMS_i(tap_tms_i)
+        .tck_i(tap_tck_i)
+      , .tms_i(tap_tms_i)
       , .TDI_i(tap_tdi_i)
       , .in_BSC_i({~dec_rst_i, dec_clk_i})
       , .out_BSC_i({dec_data[2],dec_data[1],dec_data[0]})
