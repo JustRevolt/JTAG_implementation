@@ -17,10 +17,11 @@ module top(
 //    ,output logic anlz_dec_rst_o    // JC_2         = F6
 //    ,output logic [2:0] anlz_dec_data_o // JC_9:7   = G13, F13, E16
     
-//    ,output logic anlz_tap_tck_o    // JD_1 = H4
-//    ,output logic anlz_tap_tms_o    // JD_2 = H1
-//    ,output logic anlz_tap_tdi_o    // JD_3 = G1
-//    ,output logic anlz_tap_tdo_o     // JD_4 = G3
+    ,output logic anlz_tap_tck_o    // JB_4 = H14
+    ,output logic anlz_tap_tms_o    // JB_3 = G16
+    ,output logic anlz_tap_tdi_o    // JB_2 = F16
+    ,output logic anlz_tap_tdo_o    // JB_1 = D14
+    ,output logic anlz_akip_trig_o  // JB_7 = E16
     );
     
     localparam IN_BSC_COUNT = 3;
@@ -53,14 +54,14 @@ module top(
 //    assign anlz_dec_rst_o = dec_rst_i;
 //    assign anlz_dec_data_o = dec_data_o;
     
-//    assign anlz_tap_tck_o = tap_tck_i;
-//    assign anlz_tap_tms_o = tap_tms_i;
-//    assign anlz_tap_tdi_o = tap_tdi_i;
-//    assign anlz_tap_tdo_o = tap_tdo_o;
+    assign anlz_tap_tck_o = tap_tck_i;
+    assign anlz_tap_tms_o = tap_tms_i;
+    assign anlz_tap_tdi_o = tap_tdi_i;
+    assign anlz_tap_tdo_o = tap_tdo_o;
     
     mux_2to1 dec_rst_mux (
         .in0(dec_data_o[0]), 
-        .in1(dec_rst_i),
+        .in1(~dec_rst_i),
         .g(data_pass_i[2]),
         .out(in_BSC_input[2])
     );
@@ -96,7 +97,8 @@ module top(
         .out_BSC_i(out_BSC_input),
         .TDO_o(tap_tdo_o),
         .in_BSC_o(in_BSC_output),
-        .out_BSC_o(out_BSC_output)
+        .out_BSC_o(out_BSC_output),
+        .akip_analyse_o(anlz_akip_trig_o)
     );
 
 endmodule

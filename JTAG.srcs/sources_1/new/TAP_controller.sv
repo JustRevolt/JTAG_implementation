@@ -101,71 +101,57 @@ module TAP_controller(
         endcase
     end
     
+    assign rst_o = (state == RESET);
+    
     always_comb begin
         case(state)
             RESET: begin 
-                rst_o <= 1;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IDLE: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             DR_SCAN: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             IR_SCAN: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             IR_CAPTURE: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IR_SHIFT: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IR_EXIT1: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IR_PAUSE: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IR_EXIT2: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             IR_UPDATE: begin 
-                rst_o <= 0;
-                reg_select_o <= 1;
+                reg_select_o = 1;
             end
             DR_CAPTURE: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             DR_SHIFT: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             DR_EXIT1: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             DR_PAUSE: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             DR_EXIT2: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
             DR_UPDATE: begin 
-                rst_o <= 0;
-                reg_select_o <= 0;
+                reg_select_o = 0;
             end
         endcase
     end
@@ -248,8 +234,6 @@ module TAP_controller(
                 updIR_o     <= 0;
                 
                 enable_o    <= 0;
-                
-                enable_o <= 0;
             end
             IR_PAUSE:   begin
                 shiftDR_o   <= 0;

@@ -15,7 +15,7 @@ module instruction_regs #(parameter REG_LENGTH = 4,
     );
 
     const logic [REG_LENGTH - 1:0] design_spec_data = SPEC_DATA; //32'h362F093
-    logic [REG_LENGTH - 1:0] shift_reg;
+    logic [REG_LENGTH - 1:0] shift_reg = DEFAULT_INSTRUCT;
     logic [REG_LENGTH - 1:0] save_reg;
     logic mux_out [REG_LENGTH - 1:0];
         

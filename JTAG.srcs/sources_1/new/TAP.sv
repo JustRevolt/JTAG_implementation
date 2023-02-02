@@ -12,6 +12,7 @@ module TAP
     output logic TDO_o,
     output logic in_BSC_o [IN_BSC_COUNT-1:0],
     output logic out_BSC_o [OUT_BSC_COUNT-1:0]
+    ,output logic akip_analyse_o
     );
     
     localparam INSRUCT_LENGTH = 3;
@@ -75,7 +76,8 @@ module TAP
         .exTest_o(exTest_mode),
         .system_mode_o(system_mode),
         .bypass_o(bypass_mode),
-        .device_id_o(device_id_mode)
+        .device_id_o(device_id_mode),
+        .akip_analyse_o(akip_analyse_o)
     );
 
     TAP_controller tap_control(
@@ -95,11 +97,9 @@ module TAP
         .rst_o(rst),
         .enable_o(enable)
     );
-//      assign TDO_o = 0;  
-    assign TDO_o = enable ? out_reg : 1'bZ;
-//    assign TDO_o = out_reg;
+     
+    assign TDO_o = enable ? out_reg : 1'b0;
       
-//TODO Check the slack
     always @ (negedge tck) begin
         out_reg <= out_mux_o;
     end

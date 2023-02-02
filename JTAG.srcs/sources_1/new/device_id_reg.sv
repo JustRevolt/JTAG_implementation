@@ -9,7 +9,7 @@ module device_id_reg #(parameter REG_LENGTH = 32, parameter IDCODE = 32'h0) (
     );
     
     const logic [REG_LENGTH - 1:0] device_id = IDCODE; //32'h362F093
-    logic [REG_LENGTH - 1:0] shift_reg;
+    logic [REG_LENGTH - 1:0] shift_reg = IDCODE;
     logic mux_out [REG_LENGTH - 1:0];
         
     genvar i;

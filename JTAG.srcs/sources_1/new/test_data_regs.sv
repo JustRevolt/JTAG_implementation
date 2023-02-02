@@ -25,9 +25,6 @@ module test_data_regs
     logic device_id_out;
     logic in_bsc_test_data_o [IN_BSC_COUNT-1:0];
     logic out_bsc_test_data_o [OUT_BSC_COUNT-1:0];
-    logic bsc_update;
-    
-    assign bsc_update = upd_i & (~normal_mode_i);
 
     mux_3to1 out_mux(
         .in0(out_bsc_test_data_o[0]), 
@@ -65,7 +62,7 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(bsc_update),
+                    .update_i(upd_i),
                     .test_mode_i(inTest_i),
                     .normal_mode_i(normal_mode_i),
                     .sys_data_i(in_BSC_i[bsc_c]),
@@ -78,7 +75,7 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(bsc_update),
+                    .update_i(upd_i),
                     .test_mode_i(inTest_i),
                     .normal_mode_i(normal_mode_i),
                     .sys_data_i(in_BSC_i[bsc_c]),
@@ -94,7 +91,7 @@ module test_data_regs
                     .tck_i(tck_i),
                     .shift_i(shift_i),
                     .capture_i(capture_i),
-                    .update_i(bsc_update),
+                    .update_i(upd_i),
                     .test_mode_i(exTest_i),
                     .normal_mode_i(normal_mode_i),
                     .sys_data_i(out_BSC_i[bsc_c]),

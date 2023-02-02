@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1690000001fs"></ZoomEndTime>
-      <Cursor1Time time="840000000fs"></Cursor1Time>
+      <ZoomStartTime time="2683273700fs"></ZoomStartTime>
+      <ZoomEndTime time="3475323088fs"></ZoomEndTime>
+      <Cursor1Time time="2670000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="126"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="5" />
    <wvobject fp_name="group53" type="group">
@@ -364,21 +364,47 @@
    <wvobject fp_name="group341" type="group">
       <obj_property name="label">top_tb</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb/top/project_top/dec_clk" type="logic">
+         <obj_property name="ElementShortName">dec_clk</obj_property>
+         <obj_property name="ObjectShortName">dec_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/dec_rst" type="logic">
+         <obj_property name="ElementShortName">dec_rst</obj_property>
+         <obj_property name="ObjectShortName">dec_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/dec_data" type="array">
+         <obj_property name="ElementShortName">dec_data[2:0]</obj_property>
+         <obj_property name="ObjectShortName">dec_data[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/IR/instruction_o" type="array">
+         <obj_property name="ElementShortName">instruction_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">instruction_o[2:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/tap_control/state" type="array">
+         <obj_property name="ElementShortName">state[3:0]</obj_property>
+         <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/TCK_i" type="logic">
+         <obj_property name="ElementShortName">TCK_i</obj_property>
+         <obj_property name="ObjectShortName">TCK_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/TMS_i" type="logic">
+         <obj_property name="ElementShortName">TMS_i</obj_property>
+         <obj_property name="ObjectShortName">TMS_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/TDI_i" type="logic">
+         <obj_property name="ElementShortName">TDI_i</obj_property>
+         <obj_property name="ObjectShortName">TDI_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb/top/project_top/tap/TDO_o" type="logic">
+         <obj_property name="ElementShortName">TDO_o</obj_property>
+         <obj_property name="ObjectShortName">TDO_o</obj_property>
+      </wvobject>
       <wvobject fp_name="group374" type="group">
          <obj_property name="label">TAP</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/tb/top/project_top/tap/TCK_i" type="logic">
-            <obj_property name="ElementShortName">TCK_i</obj_property>
-            <obj_property name="ObjectShortName">TCK_i</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/TMS_i" type="logic">
-            <obj_property name="ElementShortName">TMS_i</obj_property>
-            <obj_property name="ObjectShortName">TMS_i</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/TDI_i" type="logic">
-            <obj_property name="ElementShortName">TDI_i</obj_property>
-            <obj_property name="ObjectShortName">TDI_i</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/in_BSC_i" type="array">
             <obj_property name="ElementShortName">in_BSC_i[2:0]</obj_property>
             <obj_property name="ObjectShortName">in_BSC_i[2:0]</obj_property>
@@ -386,10 +412,6 @@
          <wvobject fp_name="/tb/top/project_top/tap/out_BSC_i" type="array">
             <obj_property name="ElementShortName">out_BSC_i[2:0]</obj_property>
             <obj_property name="ObjectShortName">out_BSC_i[2:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/TDO_o" type="logic">
-            <obj_property name="ElementShortName">TDO_o</obj_property>
-            <obj_property name="ObjectShortName">TDO_o</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/in_BSC_o" type="array">
             <obj_property name="ElementShortName">in_BSC_o[2:0]</obj_property>
@@ -575,10 +597,6 @@
             <obj_property name="ElementShortName">out_bsc_test_data_o[2:0]</obj_property>
             <obj_property name="ObjectShortName">out_bsc_test_data_o[2:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/DR/bsc_update" type="logic">
-            <obj_property name="ElementShortName">bsc_update</obj_property>
-            <obj_property name="ObjectShortName">bsc_update</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/IN_BSC_COUNT" type="array">
             <obj_property name="ElementShortName">IN_BSC_COUNT[31:0]</obj_property>
             <obj_property name="ObjectShortName">IN_BSC_COUNT[31:0]</obj_property>
@@ -619,7 +637,6 @@
       <wvobject fp_name="group405" type="group">
          <obj_property name="label">IR</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/tb/top/project_top/tap/IR/rst_i" type="logic">
             <obj_property name="ElementShortName">rst_i</obj_property>
             <obj_property name="ObjectShortName">rst_i</obj_property>
@@ -647,10 +664,6 @@
          <wvobject fp_name="/tb/top/project_top/tap/IR/data_o" type="logic">
             <obj_property name="ElementShortName">data_o</obj_property>
             <obj_property name="ObjectShortName">data_o</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb/top/project_top/tap/IR/instruction_o" type="array">
-            <obj_property name="ElementShortName">instruction_o[2:0]</obj_property>
-            <obj_property name="ObjectShortName">instruction_o[2:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/IR/design_spec_data" type="array">
             <obj_property name="ElementShortName">design_spec_data[2:0]</obj_property>
@@ -685,7 +698,6 @@
    <wvobject fp_name="group241" type="group">
       <obj_property name="label">deviceID_tb</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb/device_id/tap/TCK_i" type="logic">
          <obj_property name="ElementShortName">TCK_i</obj_property>
          <obj_property name="ObjectShortName">TCK_i</obj_property>
