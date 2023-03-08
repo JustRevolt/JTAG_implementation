@@ -17,14 +17,14 @@ module TAP
     
     localparam INSRUCT_LENGTH = 3;
     
-    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, system_mode;
+    logic inTest_mode, exTest_mode, bypass_mode, device_id_mode, system_mode, BIST_mode;
 
     logic shiftDR, captureDR, updDR, outDR, normal_mode;
     logic shiftIR, captureIR, updIR, outIR;
 
     logic [INSRUCT_LENGTH-1:0] instruction;
 
-    logic reg_select, out_mux_o, out_reg, tck, enable, rst;
+    logic reg_select, out_mux_o, out_reg, tck, enable, rst, run_BIST;
     
     assign normal_mode = system_mode | rst;
 
@@ -40,6 +40,7 @@ module TAP
         .normal_mode_i(normal_mode),
         .mux_g0_i(bypass_mode),
         .mux_g1_i(device_id_mode),
+        .run_BIST_i(run_BIST & BIST_mode),
         .data_i(TDI_i),
         .in_BSC_i(in_BSC_i),
         .out_BSC_i(out_BSC_i),
@@ -77,7 +78,8 @@ module TAP
         .system_mode_o(system_mode),
         .bypass_o(bypass_mode),
         .device_id_o(device_id_mode),
-        .akip_analyse_o(akip_analyse_o)
+        .akip_analyse_o(akip_analyse_o),
+        .BIST_o(BIST_mode)
     );
 
     TAP_controller tap_control(
@@ -95,10 +97,12 @@ module TAP
         .reg_select_o(reg_select),
         .tck_o(tck),
         .rst_o(rst),
-        .enable_o(enable)
+        .enable_o(enable),
+        .run_BIST_o(run_BIST)
     );
      
     assign TDO_o = enable ? out_reg : 1'b0;
+//    assign TDO_o = enable ? out_reg : 1'bz;
       
     always @ (negedge tck) begin
         out_reg <= out_mux_o;

@@ -8,39 +8,32 @@ module top_tb(
     ); 
     
     integer fd;
-   
-    localparam IN_BSC_COUNT = 2;
-    localparam OUT_BSC_COUNT = 3;
-    
+        
     logic clk;
 	
     logic tap_tms;
     logic tap_tdi;
     logic tap_tdo;
     
-    logic dec_clk;
-    logic dec_rst;
-    logic [2:0] dec_data;
-    
-    logic [2:0] data_pass;
-    logic test_reg;
+    logic [3:0] dut_in;
+    logic dut_rst;
+    logic dut_clk;
+    logic [3:0] dut_out;
     
     top project_top(
-        .dec_clk_i(dec_clk),          // btn_c    = N17
-        .dec_rst_i(dec_rst),          // btn_rst  = C12
-        .dec_data_o(dec_data),  // led_2:0  = J13, K15, H17 
+        .dut_rst_i(dut_rst),          // btn_rst  = C12
+        .dut_clk_i(dut_clk),
+        .dut_data_i(dut_in),   // sw_3:0 = R15 M13 L16 J15
+        .dut_data_o(dut_out),  // led_3:0  = N14 J13, K15, H17 
         
         .tap_tck_i(clk),          // JA_4 = G17
         .tap_tms_i(tap_tms),          // JA_3 = E18
         .tap_tdi_i(tap_tdi),          // JA_2 = D18
-        .tap_tdo_o(tap_tdo),         // JA_1 = C17
-        
-        .data_pass_i(data_pass),  // sw_2:0 = M13 L16 J15
-        .test_reg_i(test_reg)         // btn_l = P17
+        .tap_tdo_o(tap_tdo)         // JA_1 = C17
     );
 
     //device id TEST
-    logic [0:10] test_data [0:256];
+    logic [0:12] test_data [0:512];
     logic [13:0] test_cntr;
     logic [13:0] test_true_cntr;
     
@@ -52,8 +45,6 @@ module top_tb(
         $readmemb("top_test.mem", test_data);
         fd = $fopen("top_test.log", "w");
         clk = 0;
-               
-        test_reg = 0;
         
         tb_end = 0;
         ////decode REG TEST    
@@ -64,9 +55,9 @@ module top_tb(
         
         tap_tms = test_data[test_cntr][0];
         tap_tdi = test_data[test_cntr][1];
-        dec_clk = test_data[test_cntr][3];
-        dec_rst = ~test_data[test_cntr][4];
-        data_pass = test_data[test_cntr][8:10];
+        dut_rst = ~test_data[test_cntr][3];
+        dut_clk = test_data[test_cntr][4];
+        dut_in  = test_data[test_cntr][5:8];
         test_cntr +=1;
         
         #(`HALF_PERIOD*2);
@@ -74,113 +65,87 @@ module top_tb(
         while(test_data[test_cntr][0] !== 1'bx) begin
         
             if(test_cntr == 1) begin
-                $fwrite(fd, "        BYPASS TEST       |     SIR 6 TDI(111111)          ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+                $fwrite(fd, "          BYPASS TEST         |        SIR 6 TDI(111111)          ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
             else if (test_cntr == 20) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "            SDR 9 TDI(001001101) TDO(010011010)            ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "               SDR 9 TDI(001001101) TDO(010011010)                ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
             else if (test_cntr == 33) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "         DeviceID TEST       |     SIR 3 TDI(011)          ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "           DeviceID TEST         |        SIR 3 TDI(011)          ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
-            else if (test_cntr == 43) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "            SDR 32 TDI(00000000) TDO(DEADBEAF)             ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+            else if (test_cntr == 42) begin
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "                SDR 32 TDI(00000000) TDO(DEADBEAF)                ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
             else if (test_cntr == 78) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                     Core Logic TEST                       ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "                         Core Logic TEST                          ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
-            else if (test_cntr == 83) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "          Preload TEST       |     SIR 3 TDI(000)          ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+            else if (test_cntr == 89) begin
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "            RUN BIST TEST           |       SIR 3 TDI(101)        ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
+
             end
-            else if (test_cntr == 92) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                 SDR 5 TDI(00000) TDO(00101)               ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+            else if (test_cntr == 97) begin
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "            RUN BIST TEST           |      RUNTEST 220 TCK;       ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
+
             end
-            else if (test_cntr == 99) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "        InTest TEST       |      SIR 3 TDI(001)            ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+            else if (test_cntr == 318) begin
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, "      BIST RESULT READ TEST         |        SIR 3 TDI(110)       ||\n");
+                $fwrite(fd, "------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true||\n");
             end
-            else if (test_cntr == 109) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                 SDR 5 TDI(10000) TDO(00101)               ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
+            else if (test_cntr == 327) begin
+                $fwrite(fd, "--------------------------------------------------------------------------------||\n");
+                $fwrite(fd, " SDR 24 TDI(0000 0000 00 0000 0000 0000 00) TDO(0000 0000 00 0000 1101 0011 11) ||\n");
+                $fwrite(fd, "--------------------------------------------------------------------------------||\n");
+                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dut_IN|dut_CLK|dut_RST|dut_OUT|true|             ||\n");
+
             end
-            else if (test_cntr == 118) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                 SDR 5 TDI(01000) TDO(00111)               ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
-            end
-            else if (test_cntr == 127) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                 SDR 5 TDI(00000) TDO(00110)               ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
-            end
-            else if (test_cntr == 135) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "          Preload TEST       |     SIR 3 TDI(000)          ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
-            end
-            else if (test_cntr == 142) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "                 SDR 6 TDI(000111) TDO(000110)             ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
-            end
-	        else if (test_cntr == 153) begin
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, "           ExTest TEST       |     SIR 3 TDI(010)          ||\n");
-                $fwrite(fd, "-----------------------------------------------------------||\n");
-                $fwrite(fd, " TEST| TIME |STATE|TMS|TDI|TDO|dec_CLK|dec_RST|dec_OUT|true||\n");
-            end
-	               
+            	               
             tap_tms = test_data[test_cntr][0];
             tap_tdi = test_data[test_cntr][1];
-            dec_clk = test_data[test_cntr][3];
-            dec_rst = ~test_data[test_cntr][4];
-            data_pass = test_data[test_cntr][8:10];
+            dut_rst = ~test_data[test_cntr][3];
+            dut_clk = test_data[test_cntr][4];
+            dut_in  = test_data[test_cntr][5:8];
             
             #(3);
             
-            $fdisplay(fd, "%d| %t |  %h  | %d | %b | %b |   %b   |   %b   |  %b  | %b  ||", 
+            $fdisplay(fd, "%d| %t |  %h  | %d | %b | %b | %b |   %b   |   %b   | %b  | %b  ||", 
                    test_cntr
                    ,$realtime 
                    ,project_top.tap.tap_control.state
                    ,tap_tms
                    ,tap_tdi 
                    ,tap_tdo
-                   ,dec_clk
-                   ,~dec_rst
-                   ,dec_data
+                   ,dut_in
+                   ,dut_clk
+                   ,~dut_rst
+                   ,dut_out
                  ,(tap_tdo === test_data[test_cntr][2]
-                 & dec_data === test_data[test_cntr][5:7]
+                 & dut_out === test_data[test_cntr][9:12]
                  ));
                    
             if(tap_tdo === test_data[test_cntr][2]
-                & dec_data === test_data[test_cntr][5:7]) 
+                & dut_out === test_data[test_cntr][9:12]) 
                    test_true_cntr += 1;
 
             test_cntr += 1;

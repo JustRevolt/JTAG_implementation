@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="3795000001fs"></ZoomEndTime>
-      <Cursor1Time time="0fs"></Cursor1Time>
+      <ZoomStartTime time="5954166666fs"></ZoomStartTime>
+      <ZoomEndTime time="6559166667fs"></ZoomEndTime>
+      <Cursor1Time time="6333167000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="114"></ValueColumnWidth>
+      <ValueColumnWidth column_width="110"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="1" />
    <wvobject fp_name="group341" type="group">
@@ -548,6 +548,7 @@
          <wvobject fp_name="/tb/top/project_top/tap/DR/bist/step" type="array">
             <obj_property name="ElementShortName">step[7:0]</obj_property>
             <obj_property name="ObjectShortName">step[7:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/tb/top/project_top/tap/DR/bist/BIST_stop" type="logic">
             <obj_property name="ElementShortName">BIST_stop</obj_property>

@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-module TAP_controller(
+module TAP_controller
+    #( parameter RUN_BIST_TIMER_WEIGHT = 3)
+    (
     input logic tck_i,
     input logic tms_i,
     
@@ -15,7 +17,8 @@ module TAP_controller(
     output logic reg_select_o, //0 - DR, 1 - IR  
     output logic tck_o,
     output logic rst_o,
-    output logic enable_o
+    output logic enable_o,
+    output logic run_BIST_o
     );
 
     
@@ -24,6 +27,9 @@ module TAP_controller(
     DR_CAPTURE,DR_SHIFT,DR_EXIT1,DR_PAUSE,DR_EXIT2,DR_UPDATE}tap_state;
     
     tap_state state, next_state;
+    
+    logic [RUN_BIST_TIMER_WEIGHT-1:0] run_BIST_timer = 0;
+    
     
     assign tck_o = tck_i;
     
@@ -179,6 +185,9 @@ module TAP_controller(
                 updIR_o     <= 0;
                 
                 enable_o    <= 0;
+                
+                if(& run_BIST_timer) run_BIST_o <= 1;
+                else run_BIST_timer <= run_BIST_timer + 1; 
             end
             DR_SCAN:    begin
                 shiftDR_o   <= 0;
@@ -190,6 +199,9 @@ module TAP_controller(
                 updIR_o     <= 0;
                 
                 enable_o    <= 0;
+                
+                run_BIST_timer <= 0;
+                run_BIST_o  <= 0;
             end
             IR_SCAN:    begin
                 shiftDR_o   <= 0;
