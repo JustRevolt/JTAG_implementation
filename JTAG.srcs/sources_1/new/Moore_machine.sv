@@ -26,7 +26,7 @@ module Moore_machine(
                 'b0001: begin
                     if(data_i == 'b1111) state = 'b0000;
                     else if(data_i == 'b1011) state = 'b0101;
-                    else if(data_i == 'b1100) state = 'b1000;
+                    else if(data_i == 'b1100) state = 'b1000; // true data_i 1100
                     else if(data_i == 'b0010) state = 'b1011;
                 end
                 'b0010: begin
